@@ -20,6 +20,7 @@ import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
 import ProductPage from '../ProductPage';
+import NinjaBizPage from '../NinjaBizPage';
 
 const AppWrapper = styled.div`
   max-width: calc(768px + 16px * 2);
@@ -43,6 +44,7 @@ export default function App() {
       <Switch>
         <Route path="/a" component={HomePage} />
         <Route path="/orders" component={OrdersPage} />
+        <Route path="/biz" component={NinjaBizPage} />
         <Route path="/features" component={FeaturePage} />
         <Route path="/product" component={ProductPage} />
         <Route path="" component={NotFoundPage} />
