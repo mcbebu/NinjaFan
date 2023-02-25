@@ -68,6 +68,11 @@ const ExpandMore = styled((props) => {
 //     {name:"Dress Shoes", quantity:"20"}]
 // }
 
+function addCommas(str, start){
+  if (start-3 < 0) return str;
+  else return addCommas(str.slice(0, start-2), start-3) + "," + str.slice(start-2);
+}
+
 export default function OrderCard({props}) {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -79,11 +84,19 @@ export default function OrderCard({props}) {
   var date = d.toLocaleString();  
   var isSingleItemKind = props.itemGroups.length === 1;
   var totalOrders = 0;
+  var totalMoney = 0.0;
   var firstStock = props.itemGroups[0].stock;
 
   for (let item of props.itemGroups) {
       totalOrders += parseInt(item.quantity);
+      if (item.subTotalPrice.indexOf('.') !== -1)
+      {
+        totalMoney += parseFloat(item.subTotalPrice.substring(0,item.subTotalPrice.indexOf('.')).replaceAll(',',''));
+      } else totalMoney += parseFloat(item.subTotalPrice.replaceAll(',',''));
+      console.log(item.subTotalPrice.replace(',',''));
   }
+  totalMoney = totalMoney.toString();
+  totalMoney = addCommas(totalMoney, totalMoney.length-1);
 
   return (
       <Card sx={{ maxWidth: 345 }}>
@@ -106,22 +119,15 @@ export default function OrderCard({props}) {
       />
       <CardActions sx={{paddingTop:'0.5rem', paddingLeft:'1rem'}}>
           <span sx={{ display:'flex', flexWrap:'wrap', width:'100%', gap: 20 }}>
-          {/* <FlagIcon fontSize='small' /> */}
-          {/* <div style="display:flex;flex-wrap:wrap"> */}
             <ShoppingCartIcon fontSize='small' aria-label="Quantity" /> 
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> {totalOrders} </Button>
-            {/* <PinDropIcon fontSize='small' aria-label="Postcode" /> */}
             {isSingleItemKind ? 
             <InventoryIcon fontSize='small' aria-label="Stock" />: null}
              {isSingleItemKind ? 
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> {firstStock} </Button>
             : null}
-            {/* <ScheduleIcon fontSize='small' aria-label="Order creation time" /> 
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> 20/2 22:10 </Button> */}
-            {/* <PriceCheckIcon fontSize='small' aria-label="Payment verification" />
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> Paid </Button> */}
             <AttachMoneyIcon fontSize='small' aria-label="Total payment" /> 
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> {props.totalPrice} </Button>
+            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> {totalMoney} </Button>
             <HandshakeIcon fontSize='small' aria-label="Payment Method" /> 
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> : </Button>
             { props.paymentMethod === "Cash" ? 
@@ -130,11 +136,6 @@ export default function OrderCard({props}) {
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> </Button>
             <PinDropIcon fontSize='small' aria-label="Delivery distance from me" />
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> {props.distance} </Button>
-            {/* <NearMeIcon fontSize='small' aria-label="" /> */}
-          {/* </div> */}
-          {/* <IconButton aria-label="hide order" >
-            <HideSourceIcon />
-           </IconButton> */}
            </span>
         <ExpandMore
           expand={expanded}
@@ -164,26 +165,8 @@ export default function OrderCard({props}) {
            {props.itemGroups.map(itemKind => (
              <div style={{display:"flex", flexDirection:"column"}}>
               <SmallOrderCard props={itemKind} isSingleItemKind={isSingleItemKind}/>
-                {/* <Typography paragraph>
-                <b >Product Name:</b> {itemKind.name} <br/>
-                <b> Quantity:</b> {itemKind.quantity}  <br/>
-                <b> Stock:</b> {itemKind.stock}  <br/>
-                <b> Subtotal Price:</b> {itemKind.subTotalPrice} <br/>
-                </Typography>
-               <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> */}
             </div>
             ))} 
-     
-        
-          {/* <div style={{display:"flex", flexDirection:"column"}}>
-          <Typography paragraph>
-            <b >Product Name:</b> {props.name} <br/>
-            <b> Quantity:</b> {props.quantity}  <br/>
-            <b> Stock:</b> {props.stock}  <br/>
-            <b> Subtotal Price:</b> {props.price} <br/>
-
-          </Typography> */}
-          {/* { isSingleItemKind? null : <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> } */}
           <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button>
           </div>
       </Collapse>

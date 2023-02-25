@@ -164,6 +164,7 @@ const data4 = [
     }
 ]
 
+// variation in values based on the above data.
 const data5 = [
   {
     totalPrice: "6246",
@@ -225,16 +226,6 @@ const data5 = [
 
 var chosenData = data5;
 
-// Sweater Varsity Brand UCKS Asli Orisinil Katun Dijamin Tahan Lama S M L 2023 <br/>
-// 5  <br/>
-// 15  <br/>
-// Rp 1,000,000.00 <br/>
-// 20 Februari 2023 7:30 Malam   <br/>
-// Jl. Pesiungan 4 RT/RW 011/012, Kuningan, Jakarta  <br/>
-// 7 km  <br/>
-// Just Paid <br/>
-// Cash <br/>
-
 export default function OrdersPage() {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -255,18 +246,10 @@ export default function OrdersPage() {
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-      {/* <Typography variant="h3">
-        Orders
-      </Typography> */}
       <Stack spacing={2}>
         {chosenData.map(prop => (
           <OrderCard props={prop}></OrderCard>    
         ))} 
-        {/* <OrderCard props={{name:"Bandrek", quantity:"15"}}></OrderCard>     */}        
-        {/* <OrderCard props={{name:"", quantity:""}}></OrderCard>
-        <OrderCard props={{name:"", quantity:""}}></OrderCard>
-        <OrderCard props={{name:"", quantity:""}}></OrderCard>
-        <OrderCard props={{name:"", quantity:""}}></OrderCard> */}
       </Stack>
   </ThemeProvider>
     </div>
