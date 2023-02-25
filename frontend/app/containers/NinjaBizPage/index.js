@@ -20,22 +20,26 @@ export default function NinjaBizPage() {
 
   const styles = {
     paperContainer: {
-        backgroundImage: `url(${Image})`,
-        backgroundSize: "contain",
-        width: "100vw",
-        height: "100vh",
-        alignSelf: "center"
+      margin: 0,
+      padding: 0,
+      backgroundImage: `url(${Image})`,
+      backgroundSize: "contain",
+      width: "375px",
+      height: "667px",
+      alignSelf: "left"
     },
     container: {
-        display:  "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center"
+      margin: 0,
+      padding: 0,
+      display:  "flex",
+      flexDirection: "column",
+      alignItems: "left",
+      justifyContent: "left"
     },
     image: {
-        position: "absolute",
+        position: "relative",
         top: "372px",
-        right: "92px"
+        left: "153px"
         // border: "none"
     }
   };
