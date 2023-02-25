@@ -17,51 +17,54 @@ import 'react-toastify/dist/ReactToastify.css';
 // TODO update CSS
 export default function ProductViewPage() {
     const { productID: id } = useParams();
-    const data = productDatas.find((data ) => data.id = id)
+    const data = productDatas.find((data) => {
+      return data.id === id
+    })
+ 
     if (!data) {
       return <p></p>
     }
 
     return (
-        <>
-          <Stack>
-            <Image src={data.imageUrl} sx={{maxHeight: '250px' }}/>
-          </Stack>
-          
-          <Stack sx={{ marginTop: '15px' }}>
-            <Typography gutterBottom variant="h5" component="div">
-              {data.name}
-            </Typography>
-          </Stack>
+      <>
+        <Stack>
+          <Image src={data.imageUrl} sx={{maxHeight: '250px' }}/>
+        </Stack>
+        
+        <Stack sx={{ marginTop: '15px' }}>
+          <Typography gutterBottom variant="h5" component="div">
+            {data.name}
+          </Typography>
+        </Stack>
 
-          <Stack sx={{ marginTop: '10px' }}>
-            <Typography variant="body2">
-              Price: <b> {data.price/100} {data.currency} </b>
-            </Typography>
-          </Stack>
+        <Stack sx={{ marginTop: '10px' }}>
+          <Typography variant="body2">
+            Price: <b> {data.price/100} {data.currency} </b>
+          </Typography>
+        </Stack>
 
-          <Stack sx={{ marginTop: '10px' }}>
-            <Typography variant="body2">
-              Weight: <b> {data.weight} {data.weightUnit} </b>
-            </Typography>
-          </Stack>
+        <Stack sx={{ marginTop: '10px' }}>
+          <Typography variant="body2">
+            Weight: <b> {data.weight} {data.weightUnit} </b>
+          </Typography>
+        </Stack>
 
-          <Stack sx={{ marginTop: '10px' }}>
-            <Typography variant="body2">
-              Status: <b> {data.stock ? 'Available' : 'Not available' } </b>
-            </Typography>
-          </Stack>
+        <Stack sx={{ marginTop: '10px' }}>
+          <Typography variant="body2">
+            Status: <b> {data.stock ? 'Available' : 'Not available' } </b>
+          </Typography>
+        </Stack>
 
-          <Stack sx={{ marginTop: '10px' }}>
-            <Typography variant="body2" sx={{ marginTop: '15px', lineHeight: '30px', textAlign: 'justify' }}>
-              {data.description}
-            </Typography>
-          </Stack>
+        <Stack sx={{ marginTop: '10px' }}>
+          <Typography variant="body2" sx={{ marginTop: '15px', lineHeight: '30px', textAlign: 'justify' }}>
+            {data.description}
+          </Typography>
+        </Stack>
 
-          <LinkList links={data.links ? data.links : []} />
-          <ToastContainer />
-        </>
-      );
+        <LinkList links={data.links ? data.links : []} />
+        <ToastContainer />
+      </>
+    );
   }
 
   function LinkList({ links }) {

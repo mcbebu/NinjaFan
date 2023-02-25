@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -7,80 +7,183 @@ import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import MenuItem from '@mui/material/MenuItem';
-import { Button } from '@mui/material';
+import { Button, InputLabel, Select, Typography } from '@mui/material';
+import { useForm, Controller } from 'react-hook-form';
+import { Stack } from '@mui/system';
+import { productDatas } from '../../../tests/data/product';
+import { useHistory } from 'react-router-dom';
 
-var dimensionData = [
-    {
-      value: 'S',
-      label: 'S(20x30x40 cm)',
-    },
-    {
-      value: 'M',
-      label: 'M(60x80x100 cm)',
-    }
-  ];
+const dimensionData = [
+  {
+    value: 'S',
+    label: 'S(20x30x40 cm)',
+  },
+  {
+    value: 'M',
+    label: 'M(60x80x100 cm)',
+  },
+  {
+    value: 'L',
+    label: 'L(...cm)'
+  }
+];
+
+
+const imageUrls = [
+  'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166',
+  'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166',
+  'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166',
+  'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166'
+]
 
 // TODO upload and button create
 export default function ProductCreatePage() {
-    return (
-    <div>
-        <h1>Create Product</h1>
-        <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField
-          required
-          id="outlined-required"
-          label="Product Name"
-          title='productName'
-        />
-        <TextField
-          id="outlined-textarea"
-          label="Description"
-          title='description'
-          multiline
-        />
-        <TextField
-          id="outlined-required"
-          label="amount"
-          title='Amount'
-        />
-        <FormControl>
-        <FormLabel id="demo-row-radio-buttons-group-label">Stock</FormLabel>
-            <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-            >
-                <FormControlLabel value="true" control={<Radio />} label="Available" />
-                <FormControlLabel value="false" control={<Radio />} label="Out of stock" />
-            </RadioGroup>
-        </FormControl>
-        <TextField
-          id="outlined-select-currency"
-          select
-          label="Select"
-          defaultValue="S"
-          helperText="Please select the dimension size"
-        >
-          {dimensionData.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        {/* Upload */}
-      </div>
-      <div>
-      <Button variant="contained">Create</Button>
-      </div>
-    </Box>
-    </div>
+  const {control, handleSubmit} = useForm();
+  const history = useHistory();
+
+  const onSubmit = (data) => {
+    const id = productDatas.length + 1
+    productDatas.push(
+      {
+        id,
+        name: data.name,
+        description: data.description,
+        price: data.price,
+        currency: "S$",
+        imageUrl: imageUrls[id],
+        dimension: data.dimension,
+        stock: true,
+        weight: data.weight,
+        weightUnit: "kg",
+        links: [
+            {
+                "name": "Instagram",
+                "text": `https://ninjacatalogue.com/catalog/${id}/view?channel=instagram`,
+            },
+            {
+                "name": "Tiktok",
+                "text": `https://ninjacatalogue.com/catalog/${id}/view?channel=tiktok`
+            },
+            {
+                "name": "Whatsapp",
+                "text": `https://ninjacatalogue.com/catalog/${id}/view?channel=whatsapp`
+            }
+        ]
+    })
+    console.log('datas: ', productDatas)
+    history.push('/product')
+  }
+
+  return (
+    <>
+      <Stack sx={{ marginTop: '24px'}}>
+        <Typography sx={{ fontSize: '18px' }}>
+          Create a product
+        </Typography>
+      </Stack>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack sx={{ marginTop: '24px'}}>
+            <Controller
+              name="name"
+              control={control}
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField
+                  required
+                  id="name"
+                  label="Name"
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                />
+              )}
+            />
+          </Stack>
+
+          <Stack sx={{ marginTop: '12px' }}>
+            <Controller
+              name="price"
+              control={control}
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField
+                  required
+                  id="price"
+                  type="number"
+                  label="Price"
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  multiline
+                  helperText={error ? error.message : null}
+                />
+              )}
+            />
+          </Stack>
+
+          <Stack sx={{ marginTop: '12px' }}>
+            <Controller
+              name="weight"
+              control={control}
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField
+                  required
+                  id="weight"
+                  type="number"
+                  label="Weight"
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  multiline
+                  helperText={error ? error.message : null}
+                />
+              )}
+            />
+          </Stack>
+
+          <Stack sx={{ marginTop: '12px' }}>
+            <Controller
+              name="dimension"
+              control={control}
+              render={({ field }) => (
+                <>
+                  <Select labelId="dimension" label="Dimension" {...field} defaultValue='S'>
+                    {dimensionData.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Select>      
+                </>      
+              )}
+            />
+          </Stack>
+
+          <Stack sx={{ marginTop: '12px' }}>
+            <Controller
+              name="description"
+              control={control}
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <TextField
+                  id="description"
+                  label="Description"
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  multiline
+                  helperText={error ? error.message : null}
+                />
+              )}
+            />
+          </Stack>
+
+        <Stack sx={{marginTop: '24px' }}>
+          <Button type="submit" sx={{ backgroundColor: '#C10230', color: 'white', textTransform: 'none', height: '40px' }}>
+            Create
+          </Button>
+        </Stack>
+  
+      </form>
+    </>
     );
   }

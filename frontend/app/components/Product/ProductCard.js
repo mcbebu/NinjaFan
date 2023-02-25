@@ -37,7 +37,7 @@ export function ProductCard({ product }) {
               <Grid container>
                 <Grid item>
                   <Typography sx={{ fontSize: 12, fontWeight: 'medium' }}>
-                    {product.currency} {product.price}
+                    {product.currency}{product.price}
                   </Typography>
                 </Grid>
               </Grid>
