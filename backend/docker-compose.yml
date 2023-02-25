@@ -1,0 +1,10 @@
+services:
+  ninjafanbe:
+    container_name: ninjafanbe
+    hostname: ninjafanbe
+    build:
+      context: ./
+    ports:
+      - "8080:8080"
+
+
