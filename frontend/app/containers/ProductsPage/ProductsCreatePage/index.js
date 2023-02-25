@@ -12,6 +12,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { Stack } from '@mui/system';
 import { productDatas } from '../../../tests/data/product';
 import { useHistory } from 'react-router-dom';
+import { createProduct } from '../../../services/api';
 
 const dimensionData = [
   {
@@ -36,41 +37,44 @@ const imageUrls = [
   'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166'
 ]
 
-// TODO upload and button create
 export default function ProductsCreatePage() {
   const {control, handleSubmit} = useForm();
   const history = useHistory();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const id = productDatas.length + 1
-    productDatas.push(
-      {
-        id,
-        name: data.name,
-        description: data.description,
-        price: data.price,
-        currency: "S$",
-        imageUrl: imageUrls[id],
-        dimension: data.dimension,
-        stock: true,
-        weight: data.weight,
-        weightUnit: "kg",
-        links: [
-            {
-                "name": "Instagram",
-                "text": `https://ninjacatalogue.com/catalog/products/${id}/view?channel=instagram`,
-            },
-            {
-                "name": "Tiktok",
-                "text": `https://ninjacatalogue.com/catalog/products/${id}/view?channel=tiktok`
-            },
-            {
-                "name": "Whatsapp",
-                "text": `https://ninjacatalogue.com/catalog/products/${id}/view?channel=whatsapp`
-            }
-        ]
-    })
-    history.push('/products')
+    const postData = {
+      name: data.name,
+      description: data.description,
+      price: Number(data.price),
+      currency: "Rp",
+      image_url: imageUrls[id],
+      dimension: data.dimension,
+      stock: true,
+      weight: Number(data.weight),
+      weight_unit: "kg",
+      links: [
+          {
+              "name": "Instagram",
+              "text": `https://localhost:3000/products/catalogue/${id}?channel=instagram`,
+          },
+          {
+              "name": "Tiktok",
+              "text": `https://localhost:3000/products/catalogue/${id}?channel=tiktok`
+          },
+          {
+              "name": "Whatsapp",
+              "text": `https://localhost:3000/products/catalogue/${id}?channel=whatsapp`
+          }
+      ]
+    }
+
+  
+
+    const response = await createProduct(postData)
+    if (response.status === 200) {
+      history.push('/products')
+    }
   }
 
   return (
@@ -177,7 +181,10 @@ export default function ProductsCreatePage() {
           </Stack>
 
         <Stack sx={{marginTop: '24px' }}>
-          <Button type="submit" sx={{ backgroundColor: '#C10230', color: 'white', textTransform: 'none', height: '40px' }}>
+          <Button
+            type="submit"
+            sx={{ backgroundColor: '#C10230', color: 'white', textTransform: 'none', height: '40px' }}
+          >
             Create
           </Button>
         </Stack>

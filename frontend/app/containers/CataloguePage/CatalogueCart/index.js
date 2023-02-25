@@ -1,13 +1,55 @@
-import { Button, Card, CardContent, Stack, TextField, Typography } from '@mui/material';
-import React from 'react';
+import { Button, Card, CardContent, Grid, Stack, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { CatalogueContext } from '../../ProductsPage';
 
 export function CatalogueCartPage() {
   const {control, handleSubmit} = useForm();
+  const [name, setName] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
+  const [address, setAddress] = useState('');
+  
+  useEffect(() => {
+    const lsName = localStorage.getItem('name');
+    if (lsName) {
+      setName(lsName);
+    }
+    
+    const lsContactNumber = localStorage.getItem('contactNumber');
+    if (lsContactNumber) {
+      setContactNumber(lsContactNumber);
+    }
 
-  const onSubmit = (data, orders) => {
-    console.log('data: ', data)
+    const lsAddress = localStorage.getItem('address');
+    if (lsAddress) {
+      setAddress(lsAddress);
+    }
+  }, [])
+
+  const saveContact = () => {
+    localStorage.setItem('name', name)
+    localStorage.setItem('contactNumber', contactNumber)
+    localStorage.setItem('address', address)
+  }
+
+  const getTotalPrice = (orders) => {
+    const productPrice = getProductPrice(orders)
+    const shippingPrice = 10000
+    return productPrice + shippingPrice
+  }
+
+  const getProductPrice = (orders) => {
+    let productPrice = 0
+    for (const obj of Object.values(orders)) {
+      if (obj.product) {
+        productPrice += (obj.product.price * obj.quantity)
+      }
+    }
+    return productPrice
+  }
+
+  const onSubmit = (formData, orders) => {
+    console.log('formData: ', formData)
     console.log('orders: ', orders)
   }
   
@@ -35,8 +77,12 @@ export function CatalogueCartPage() {
                     required
                     id="name"
                     label="Name"
+                    defaultValue={name}
                     value={value}
-                    onChange={onChange}
+                    onChange={(e) => {
+                      setName(e.target.value)
+                      onChange(e)
+                    }}
                     error={!!error}
                     multiline
                     helperText={error ? error.message : null}
@@ -52,11 +98,15 @@ export function CatalogueCartPage() {
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
                   <TextField
                     required
-                    type="number"
+                    // type="number"
                     id="contactNumber"
+                    defaultValue={contactNumber}
                     label="Contact Number"
                     value={value}
-                    onChange={onChange}
+                    onChange={(e) => {
+                      setContactNumber(e.target.value)
+                      onChange(e)
+                    }}
                     error={!!error}
                     multiline
                     helperText={error ? error.message : null}
@@ -72,15 +122,45 @@ export function CatalogueCartPage() {
                   <TextField
                     required
                     id="address"
+                    defaultValue={address}
                     label="Address"
                     value={value}
-                    onChange={onChange}
+                    onChange={(e) => {
+                      setAddress(e.target.value)
+                      onChange(e)
+                    }}
                     error={!!error}
                     multiline
                     helperText={error ? error.message : null}
                   />
                 )}
               />
+            </Stack>
+
+            <Grid container>
+              <Grid item xs="6">
+                <Button onClick={() => saveContact()}>
+                  Save Contact
+                </Button>
+              </Grid>
+            </Grid>
+
+            <Stack sx={{ marginTop: '16px' }}>
+              <Typography>
+                Product Price: {getProductPrice(orders)}
+              </Typography>
+            </Stack>
+
+            <Stack sx={{ marginTop: '16px' }}>
+              <Typography>
+                Shipping Price: 10000
+              </Typography>
+            </Stack>
+
+            <Stack sx={{ marginTop: '16px' }}>
+              <Typography>
+                Total Price: {getTotalPrice(orders)}
+              </Typography>
             </Stack>
 
             <Stack sx={{marginTop: '24px' }}>
@@ -96,8 +176,10 @@ export function CatalogueCartPage() {
 }
 
 function Orders({ orders }) {
-  const orderList = orders ? Object.values(orders).map((order) => (
-      <Card key={order.product.id} sx={{ width: '100%', height: 100 }}>
+  const orderList = orders ? Object.values(orders).map((order) => {
+    if (order.quantity > 0) {
+      return (
+        <Card key={order.product.id} sx={{ width: '100%', height: 100 }}>
         <CardContent>
           <Stack>
             <Typography>
@@ -116,8 +198,9 @@ function Orders({ orders }) {
           </Stack>
         </CardContent>
       </Card>
-    )
-  ) : (
+      )
+    }
+  }) : (
     <p>Empty</p>
   )
   return orderList

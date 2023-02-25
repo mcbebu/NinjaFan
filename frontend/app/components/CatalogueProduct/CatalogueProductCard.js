@@ -7,7 +7,7 @@ export function CatalogueProductCard({ product, orders, setOrders }) {
   const [quantity, setQuantity] = useState(0)
 
   useEffect(() => {
-    setOrders({ ...orders, [product.id]: {
+    setOrders({ ...orders, [product.ID]: {
       product,
       quantity,
     }})
@@ -18,7 +18,7 @@ export function CatalogueProductCard({ product, orders, setOrders }) {
       {/* <Link to={`/catalgoue/products/${product.id}`} style={{ textDecoration: 'none', color: 'black' }}> */}
         <CardMedia
           sx={{ height: 119 }}
-          image={product.imageUrl}
+          image={product.image_url}
         />
         <CardContent>
         <Grid container>

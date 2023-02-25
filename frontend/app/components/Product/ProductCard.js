@@ -11,10 +11,10 @@ export const ProductContext = React.createContext();
 export function ProductCard({ product }) {
   return (
     <Card sx={{ width: 150, height: 225 }}>
-      <Link to={`/products/${product.id}/view`} style={{ textDecoration: 'none', color: 'black' }}>
+      <Link to={`/products/${product.ID}/view`} style={{ textDecoration: 'none', color: 'black' }}>
         <CardMedia
           sx={{ height: 119 }}
-          image={product.imageUrl}
+          image={product.image_url}
         />
         <CardContent>
         <Grid container>
@@ -28,7 +28,7 @@ export function ProductCard({ product }) {
           <Grid item xs={5}>
             <Grid container>
               <Grid item>
-                <Typography sx={{ fontSize: 9}}>
+                <Typography sx={{fontSize: 9}}>
                   Price
                 </Typography>
               </Grid>
@@ -41,15 +41,6 @@ export function ProductCard({ product }) {
               </Grid>
             </Grid>
           </Grid>
-          {/* <Grid item>
-            <ProductButton
-              name="Edit"
-              height="25px"
-              fontSize="12px"
-              startIcon={<Edit sx={{ color: 'white', width: '11px' }} />}
-              marginTop="5px"
-            />
-          </Grid> */}
         </Grid>
       </CardContent>
       </Link>
