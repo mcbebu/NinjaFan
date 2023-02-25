@@ -1,6 +1,7 @@
 package api
 
 import (
+	"log"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -16,8 +17,8 @@ const (
 )
 
 type GetProductResponse struct {
-	Error string        `json:"error"`
-	Data  model.Product `json:"data"`
+	Error string                  `json:"error"`
+	Data  GetProductsLinkResponse `json:"data"`
 }
 
 func GetProductDetailHandler(c *gin.Context) {
@@ -37,8 +38,26 @@ func GetProductDetailHandler(c *gin.Context) {
 		c.JSON(500, errorResponse(failedToGetProduct))
 		return
 	}
+
+	links, err := model.GetLinks(uint(productID))
+	if err != nil {
+		c.JSON(500, errorResponse(failedToGetLinks))
+		return
+	}
+	linksResponse := []GetProductLinksResponse{}
+
+	for j := range links {
+		linksResponse = append(linksResponse, GetProductLinksResponse{
+			Name: links[j].Media,
+			Text: links[j].URL,
+		})
+	}
+	log.Println(linksResponse)
 	c.JSON(200, GetProductResponse{
 		Error: "",
-		Data:  *product,
+		Data: GetProductsLinkResponse{
+			Product: *product,
+			Links:   linksResponse,
+		},
 	})
 }
