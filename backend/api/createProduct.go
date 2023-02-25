@@ -23,7 +23,7 @@ type CreateProductRequest struct {
 	ImageURL  string `json:"image_url"`
 	Dimension string `json:"dimension"`
 	// unit of 1000
-	Weight     uint   `json:"weight"`
+	Weight     string `json:"weight"`
 	WeightUnit string `json:"weight_unit"`
 
 	Links []CreateProductLinkRequest `json:"links"`
