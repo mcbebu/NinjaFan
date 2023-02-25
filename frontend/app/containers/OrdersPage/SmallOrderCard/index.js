@@ -67,7 +67,7 @@ const ExpandMore = styled((props) => {
 //     {name:"Dress Shoes", quantity:"20"}]
 // }
 
-export default function SmallOrderCard({props}) {
+export default function SmallOrderCard({props, isSingleItemKind}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -78,87 +78,100 @@ export default function SmallOrderCard({props}) {
   // var date = d.toLocaleString();  
   // var isSingleItemKind = props.itemGroups.length === 1;
 
-  return (
-      <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        avatar={
-          <CardMedia
-          component="img"
-          height="194"
-          image="https://img.ltwebstatic.com/images3_pi/2021/11/23/1637652358d85a6c954cf7f43fc2cecf25443803a4_thumbnail_900x.webp"
+  if (isSingleItemKind){
+    return (
+      <div style={{display:"flex", flexDirection:"column"}}>
+        <Typography paragraph>
+        <b >Product Name:</b> {props.name} <br/>
+        <b> Quantity:</b> {props.quantity}  <br/>
+        <b> Stock:</b> {props.stock}  <br/>
+        <b> Subtotal Price:</b> {props.subTotalPrice} <br/>
+        </Typography>
+        {/* <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> */}
+      </div>
+    );
+  } else {
+    return (
+    
+        <Card sx={{ maxWidth: 345 }}>
+        <CardHeader
+          avatar={
+            <CardMedia
+            component="img"
+            height="194"
+            image="https://img.ltwebstatic.com/images3_pi/2021/11/23/1637652358d85a6c954cf7f43fc2cecf25443803a4_thumbnail_900x.webp"
+          />
+          }
+          sx={{padding: 0}}
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title= { props.name  }
         />
-        }
-        sx={{padding: 0}}
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title= { props.name  }
-      />
-      <CardActions sx={{paddingTop:'0.5rem', paddingLeft:'1rem'}}>
-          <span sx={{ display:'flex', flexWrap:'wrap', width:'100%', gap: 20 }}>
-          {/* <FlagIcon fontSize='small' /> */}
-          {/* <div style="display:flex;flex-wrap:wrap"> */}
-            <ShoppingCartIcon fontSize='small' aria-label="Quantity" /> 
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> 5</Button>
-            {/* <PinDropIcon fontSize='small' aria-label="Postcode" /> */}
-            <InventoryIcon fontSize='small' aria-label="Stock" />
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 15 </Button>
-            {/* <ScheduleIcon fontSize='small' aria-label="Order creation time" /> 
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> 20/2 22:10 </Button> */}
-            {/* <PriceCheckIcon fontSize='small' aria-label="Payment verification" />
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> Paid </Button> */}
-            {/* <PinDropIcon fontSize='small' aria-label="Delivery distance from me" />
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 100km </Button> */}
-            <AttachMoneyIcon fontSize='small' aria-label="Subtotal payment" /> 
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> Rp 1 jt </Button>
-            {/* <HandshakeIcon fontSize='small' aria-label="Payment Method" />  */}
-            {/* <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> : </Button>
-            <PaymentsIcon color='green' sx={{color:'green'}} fontSize='small' aria-label="Cash" /> */}
-            {/* <AccountBalanceIcon fontSize='small' sx={{color:'blue'}} aria-label="Transfer" /> */}
-            {/* <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> </Button> */}
-            {/* <NearMeIcon fontSize='small' aria-label="" /> */}
-          {/* </div> */}
-          {/* <IconButton aria-label="hide order" >
-            <HideSourceIcon />
-           </IconButton> */}
-           </span>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-          sx={{ marginLeft:'auto'}}
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ padding:"10px"}}>
+        <CardActions sx={{paddingTop:'0.5rem', paddingLeft:'1rem'}}>
+            <span sx={{ display:'flex', flexWrap:'wrap', width:'100%', gap: 20 }}>
+            {/* <FlagIcon fontSize='small' /> */}
+            {/* <div style="display:flex;flex-wrap:wrap"> */}
+              <ShoppingCartIcon fontSize='small' aria-label="Quantity" /> 
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> 5</Button>
+              {/* <PinDropIcon fontSize='small' aria-label="Postcode" /> */}
+              <InventoryIcon fontSize='small' aria-label="Stock" />
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 15 </Button>
+              {/* <ScheduleIcon fontSize='small' aria-label="Order creation time" /> 
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> 20/2 22:10 </Button> */}
+              {/* <PriceCheckIcon fontSize='small' aria-label="Payment verification" />
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> Paid </Button> */}
+              {/* <PinDropIcon fontSize='small' aria-label="Delivery distance from me" />
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 100km </Button> */}
+              <AttachMoneyIcon fontSize='small' aria-label="Subtotal payment" /> 
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> Rp 1 jt </Button>
+              {/* <HandshakeIcon fontSize='small' aria-label="Payment Method" />  */}
+              {/* <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> : </Button>
+              <PaymentsIcon color='green' sx={{color:'green'}} fontSize='small' aria-label="Cash" /> */}
+              {/* <AccountBalanceIcon fontSize='small' sx={{color:'blue'}} aria-label="Transfer" /> */}
+              {/* <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> </Button> */}
+              {/* <NearMeIcon fontSize='small' aria-label="" /> */}
+            {/* </div> */}
+            {/* <IconButton aria-label="hide order" >
+              <HideSourceIcon />
+            </IconButton> */}
+            </span>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+            sx={{ marginLeft:'auto'}}
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ padding:"10px"}}>
 
+              <div style={{display:"flex", flexDirection:"column"}}>
+                  <Typography paragraph>
+                  <b >Product Name:</b> {props.name} <br/>
+                  <b> Quantity:</b> {props.quantity}  <br/>
+                  <b> Stock:</b> {props.stock}  <br/>
+                  <b> Subtotal Price:</b> {props.subTotalPrice} <br/>
+                  </Typography>
+                {/* <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> */}
+              </div>
+        
+            {/* <div style={{display:"flex", flexDirection:"column"}}>
+            <Typography paragraph>
+              <b >Product Name:</b> {props.name} <br/>
+              <b> Quantity:</b> {props.quantity}  <br/>
+              <b> Stock:</b> {props.stock}  <br/>
+              <b> Subtotal Price:</b> {props.price} <br/>
 
-
-             <div style={{display:"flex", flexDirection:"column"}}>
-                <Typography paragraph>
-                <b >Product Name:</b> {props.name} <br/>
-                <b> Quantity:</b> {props.quantity}  <br/>
-                <b> Stock:</b> {props.stock}  <br/>
-                <b> Subtotal Price:</b> {props.subTotalPrice} <br/>
-                </Typography>
-               <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button>
-            </div>
-       
-          {/* <div style={{display:"flex", flexDirection:"column"}}>
-          <Typography paragraph>
-            <b >Product Name:</b> {props.name} <br/>
-            <b> Quantity:</b> {props.quantity}  <br/>
-            <b> Stock:</b> {props.stock}  <br/>
-            <b> Subtotal Price:</b> {props.price} <br/>
-
-          </Typography> */}
-          {/* { isSingleItemKind? null : <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> } */}
-   
-      </Collapse>
-    </Card>
-  );
+            </Typography> */}
+            {/* { isSingleItemKind? null : <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> } */}
+    
+        </Collapse>
+      </Card>
+    );
+  }
 }

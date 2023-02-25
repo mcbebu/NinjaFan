@@ -95,7 +95,7 @@ export default function OrderCard({props}) {
             <MoreVertIcon />
           </IconButton>
         }
-        title= {isSingleItemKind ? props.itemGroups[0].name : props.orderId }
+        title= {isSingleItemKind ? props.itemGroups[0].name + "  " + props.orderId : props.orderId }
         subheader= {date}
       />
       <CardActions sx={{paddingTop:'0.5rem', paddingLeft:'1rem'}}>
@@ -144,14 +144,14 @@ export default function OrderCard({props}) {
             <b>Address:</b> {props.address}  <br/>
             <b>Distance:</b> {props.distance} <br/>
             <b>Status:</b> {props.status} <br/>
-            <b>Payment Method:</b> {props.paymentMethod} <br/>
+            <b>Payment Method:</b> {props.paymentMethod} <br/><br/> 
 
-            { isSingleItemKind ? <br/> : <div sx={{width:"100%", display: "flex", flexDirection:"column", alignItems:"center"}}><Typography variant="h5" sx={{alignSelf:"center"}} >Order Items:</Typography></div> }
+            { isSingleItemKind ? null : <div sx={{width:"100%", display: "flex", flexDirection:"column", alignItems:"center"}}><Typography variant="h5" sx={{alignSelf:"center"}} >Order Items:</Typography></div> }
 
           <div style={{display:"flex", flexDirection:"column"}}>
            {props.itemGroups.map(itemKind => (
              <div style={{display:"flex", flexDirection:"column"}}>
-              <SmallOrderCard props={itemKind}/>
+              <SmallOrderCard props={itemKind} isSingleItemKind={isSingleItemKind}/>
                 {/* <Typography paragraph>
                 <b >Product Name:</b> {itemKind.name} <br/>
                 <b> Quantity:</b> {itemKind.quantity}  <br/>
@@ -172,6 +172,7 @@ export default function OrderCard({props}) {
 
           </Typography> */}
           {/* { isSingleItemKind? null : <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> } */}
+          <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button>
           </div>
       </Collapse>
     </Card>
