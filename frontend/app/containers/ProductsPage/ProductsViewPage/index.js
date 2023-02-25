@@ -1,78 +1,71 @@
 import React, { useEffect, useState } from 'react';
-import {  useHistory, useParams } from 'react-router-dom';
-import { productDatas } from '../../../tests/data/product';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import { useParams } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { IconButton, Stack } from '@mui/material';
-import { InsertLink } from '@mui/icons-material';
+import { Stack } from '@mui/material';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Image } from 'mui-image'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getProductDetail } from '../../../services/api';
 
-// TODO update CSS
 export default function ProductsViewPage() {
-    const { productID } = useParams();
-    const [data, setData] = useState(undefined)
-    
-    useEffect(() => {
-      getProductDetail(productID).then((resp) => {
-        if (resp && resp.data && resp.data.data) {
-          console.log('resp.data.data: ', resp.data.data)
-          setData(resp.data.data)
-        }
-      }).catch((err) => console.error(err))
-    }, []);
+  const { productID } = useParams();
+  const [data, setData] = useState(undefined)
+  
+  useEffect(() => {
+    getProductDetail(productID).then((resp) => {
+      if (resp && resp.data && resp.data.data) {
+        console.log('resp.data.data: ', resp.data.data)
+        setData(resp.data.data)
+      }
+    }).catch((err) => console.error(err))
+  }, []);
 
-    if (!data) {
-      return <p></p>
-    }
+  if (!data) {
+    return <p></p>
+  }
 
-    return (
-        <>
-          <Stack>
-            <Image src={data.image_url} sx={{maxHeight: '250px' }}/>
-          </Stack>
-          
-          <Stack sx={{ marginTop: '15px' }}>
-            <Typography gutterBottom variant="h5" component="div">
-              {data.name}
-            </Typography>
-          </Stack>
+  return (
+      <>
+        <Stack>
+          <Image src={data.image_url} sx={{maxHeight: '250px' }}/>
+        </Stack>
+        
+        <Stack sx={{ marginTop: '15px' }}>
+          <Typography gutterBottom variant="h5" component="div">
+            {data.name}
+          </Typography>
+        </Stack>
 
-          <Stack sx={{ marginTop: '10px' }}>
-            <Typography variant="body2">
-              Price: <b> {data.currency} {data.price} </b>
-            </Typography>
-          </Stack>
+        <Stack sx={{ marginTop: '10px' }}>
+          <Typography variant="body2">
+            Price: <b> {data.currency} {data.price} </b>
+          </Typography>
+        </Stack>
 
-          <Stack sx={{ marginTop: '10px' }}>
-            <Typography variant="body2">
-              Weight: <b> {data.weight} {data.weight_unit} </b>
-            </Typography>
-          </Stack>
+        <Stack sx={{ marginTop: '10px' }}>
+          <Typography variant="body2">
+            Weight: <b> {data.weight} {data.weight_unit} </b>
+          </Typography>
+        </Stack>
 
-          <Stack sx={{ marginTop: '10px' }}>
-            <Typography variant="body2">
-              Status: <b> {data.stock ? 'Available' : 'Not available' } </b>
-            </Typography>
-          </Stack>
+        <Stack sx={{ marginTop: '10px' }}>
+          <Typography variant="body2">
+            Status: <b> {data.stock ? 'Available' : 'Not available' } </b>
+          </Typography>
+        </Stack>
 
-          <Stack sx={{ marginTop: '10px' }}>
-            <Typography variant="body2" sx={{ marginTop: '15px', lineHeight: '30px', textAlign: 'justify' }}>
-              {data.description}
-            </Typography>
-          </Stack>
+        <Stack sx={{ marginTop: '10px' }}>
+          <Typography variant="body2" sx={{ marginTop: '15px', lineHeight: '30px', textAlign: 'justify' }}>
+            {data.description}
+          </Typography>
+        </Stack>
 
-          <LinkList links={data.links ? data.links : []} />
-          <ToastContainer />
-        </>
-      );
+        <LinkList links={data.links ? data.links : []} />
+        <ToastContainer />
+      </>
+    );
   }
 
   function LinkList({ links }) {

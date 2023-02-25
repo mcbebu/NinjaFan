@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
-import { Link } from 'react-router-dom';
 import { CounterButton } from './CounterButton';
 
 export function CatalogueProductCard({ product, orders, setOrders }) {

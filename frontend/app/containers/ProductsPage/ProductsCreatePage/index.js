@@ -56,15 +56,15 @@ export default function ProductsCreatePage() {
       links: [
           {
               "name": "Instagram",
-              "text": `https://localhost:3000/products/catalogue/${id}?channel=instagram`,
+              "text": `https://localhost:3000/products/catalogue/${id}/view?channel=instagram`,
           },
           {
               "name": "Tiktok",
-              "text": `https://localhost:3000/products/catalogue/${id}?channel=tiktok`
+              "text": `https://localhost:3000/products/catalogue/${id}/view?channel=tiktok`
           },
           {
               "name": "Whatsapp",
-              "text": `https://localhost:3000/products/catalogue/${id}?channel=whatsapp`
+              "text": `https://localhost:3000/products/catalogue/${id}/view?channel=whatsapp`
           }
       ]
     }
