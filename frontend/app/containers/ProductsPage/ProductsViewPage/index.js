@@ -62,17 +62,17 @@ export default function ProductsViewPage() {
           </Typography>
         </Stack>
 
-        <LinkList links={data.links ? data.links : []} />
+        <LinkList links={data.links ? data.links : []} productID={productID} />
         <ToastContainer />
       </>
     );
   }
 
-  function LinkList({ links }) {
+  function LinkList({ links, productID }) {
     return links.map((obj) => (
       <Stack sx={{ marginTop: '20px' }}>
         <CopyToClipboard
-          text={obj.text}
+          text={obj.text.replace(':productID', productID)}
           onCopy={() => {toast("Link has been copied successfully")}}
         >
           <Button sx={{ backgroundColor: '#C10230', color: 'white', width: '100%' }}>

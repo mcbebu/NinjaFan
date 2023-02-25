@@ -1,6 +1,8 @@
 import { Button, Card, CardContent, Grid, Stack, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { createOrder } from '../../../services/api';
 import { CatalogueContext } from '../../ProductsPage';
 
 export function CatalogueCartPage() {
@@ -8,6 +10,7 @@ export function CatalogueCartPage() {
   const [name, setName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
   const [address, setAddress] = useState('');
+  const history = useHistory();
   
   useEffect(() => {
     const lsName = localStorage.getItem('name');
@@ -48,9 +51,28 @@ export function CatalogueCartPage() {
     return productPrice
   }
 
-  const onSubmit = (formData, orders) => {
-    console.log('formData: ', formData)
-    console.log('orders: ', orders)
+  const onSubmit = async (_, orders) => {
+    const products = []
+    for (const obj of Object.values(orders)) {
+      products.push({
+        product_id: obj.product.id,
+        quantity: obj.product.quantity
+      })
+    }
+
+    const totalPrice = getTotalPrice(orders)
+    const postData = {
+      products,
+      total_price: totalPrice,
+      address_1: address,
+      buyer_name: name,
+      contact_number: contactNumber
+    }
+    
+    const resp = await createOrder(postData)
+    if (resp.status === 200) {
+      history.push('/products/catalogue')
+    }
   }
   
   return (
@@ -139,7 +161,14 @@ export function CatalogueCartPage() {
 
             <Grid container>
               <Grid item xs="6">
-                <Button onClick={() => saveContact()}>
+                <Button
+                  sx={{
+                    backgroundColor: '#C10230',
+                    marginTop: '16px',
+                    color: 'white',
+                    textTransform: 'none'
+                  }} onClick={() => saveContact()}
+                  >
                   Save Contact
                 </Button>
               </Grid>

@@ -7,11 +7,14 @@ const (
 	confirmedStatus
 	receivedStatus
 	doneStatus
+	cancelStatus
 )
 
 type Order struct {
 	gorm.Model
 	TotalPrice    int32
+	BuyerName     string
+	ContactNumber string
 	Status        int8
 	Address1      string
 	Address2      string
@@ -39,4 +42,20 @@ func GetOrders() ([]Order, error) {
 		return nil, result.Error
 	}
 	return orders, nil
+}
+
+func ConfirmOrder(orderID uint) error {
+	result := defaultDB.Model(&Order{}).Where("id = ?", orderID).Update("status", confirmedStatus)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
+}
+
+func CancelOrder(orderID uint) error {
+	result := defaultDB.Model(&Order{}).Where("id = ?", orderID).Update("status", cancelStatus)
+	if result.Error != nil {
+		return result.Error
+	}
+	return nil
 }

@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
 import MenuItem from '@mui/material/MenuItem';
-import { Button, InputLabel, Select, Typography } from '@mui/material';
+import { Button, Select, Typography } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { Stack } from '@mui/system';
 import { productDatas } from '../../../tests/data/product';
@@ -51,20 +45,20 @@ export default function ProductsCreatePage() {
       image_url: imageUrls[id],
       dimension: data.dimension,
       stock: true,
-      weight: Number(data.weight),
+      weight: data.weight,
       weight_unit: "kg",
       links: [
           {
               "name": "Instagram",
-              "text": `https://localhost:3000/products/catalogue/${id}/view?channel=instagram`,
+              "text": `http://localhost:3000/products/catalogue/:productID/view?channel=instagram`,
           },
           {
               "name": "Tiktok",
-              "text": `https://localhost:3000/products/catalogue/${id}/view?channel=tiktok`
+              "text": `http://localhost:3000/products/catalogue/:productID/view?channel=tiktok`
           },
           {
               "name": "Whatsapp",
-              "text": `https://localhost:3000/products/catalogue/${id}/view?channel=whatsapp`
+              "text": `http://localhost:3000/products/catalogue/:productID/view?channel=whatsapp`
           }
       ]
     }

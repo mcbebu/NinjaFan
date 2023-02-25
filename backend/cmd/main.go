@@ -17,13 +17,18 @@ func main() {
 		})
 	})
 
+	// product
 	r.POST("/product/create", api.CreateProductHandler)
 	r.GET("/product/get", api.GetProductDetailHandler)
 	r.POST("/product/edit", api.EditProductDetailHandler)
+	r.GET("/products/get", api.GetProducts)
+
+	// order
 	r.POST("/order/create", api.CreateOrderHandler)
 	r.GET("/orders/get", api.GetOrdersHandler)
 	r.GET("/order/detail", api.GetOrderDetailHandler)
-	r.GET("/products/get", api.GetProducts)
+	r.POST("/order/cancel", api.CancelOrderHandler)
+	r.POST("/order/confirm", api.ConfirmOrderHandler)
 
 	err := r.Run()
 	if err != nil {

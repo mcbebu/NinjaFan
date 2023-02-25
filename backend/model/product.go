@@ -15,7 +15,7 @@ type Product struct {
 	ImageURL  string `json:"image_url"`
 	Dimension string `json:"dimension"`
 	// unit of 1000
-	Weight     uint   `json:"weight"`
+	Weight     string `json:"weight"`
 	WeightUnit string `json:"weight_unit"`
 }
 
@@ -42,9 +42,6 @@ func GetProducts() ([]Product, error) {
 	return products, nil
 }
 
-func GetProductByIDs() {
-
-}
 func EditProduct(id uint, product Product) error {
 	currentProduct := &Product{}
 	currentResult := defaultDB.First(currentProduct, id)

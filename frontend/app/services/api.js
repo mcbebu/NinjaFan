@@ -14,3 +14,8 @@ export async function getProductDetail(productId) {
   const response = await customAxios.get(`/product/get?product_id=${productId}`);
   return response;
 }
+
+export async function createOrder(postBody) {
+  const response = await customAxios.post('/order/create', postBody);
+  return response;
+}
