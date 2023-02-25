@@ -66,13 +66,102 @@ const theme = createTheme({
 
 
 // const data = ["A", "B", "C" , "D" ,"E" ,"F"];
-const data2 = [
-    {name:"Bandrek", quantity:"30"},
+
+// array containing orders with two parameters
+// const data2 = [
+//     {name:"Bandrek", quantity:"30"},
+//     {name:"Milo", quantity:"412"},
+//     {name:"Sweater", quantity:"70"},
+//     {name:"Jacket", quantity:"1"},
+//     {name:"Dress Shoes", quantity:"20"}
+// ]
+
+// one order with multiple different kinds of items
+const data3 = {
+  totalPrice: "4550",
+  address: "",
+  distance: "",
+  status:"Waiting Seller Confirmation",
+  paymentMethod:"Cash On Demand",
+  orderTime:"1676892632",
+  orderId: "1jg2n8472789734nv923",
+  itemGroups: [
+    {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00"},
     {name:"Milo", quantity:"412"},
     {name:"Sweater", quantity:"70"},
     {name:"Jacket", quantity:"1"},
-    {name:"Dress Shoes", quantity:"20"}
+    {name:"Dress Shoes", quantity:"20"}]
+}
+
+// array containing orders with possibly multiple different kinds of items
+const data4 = [
+    {
+      totalPrice: "7477",
+      address: "Jl. Boediman No. 40, Bekasi",
+      distance: "30km",
+      status:"Waiting Seller Confirmation",
+      paymentMethod:"Cash On Demand",
+      orderTime:"1676892632000",
+      orderId: "789734nv9231jg2n8472",
+      itemGroups: [
+        {name:"Milo", quantity:"412", stock:"100", subTotalPrice:"300,000"},
+        {name:"Jacket", quantity:"1", stock:"100", subTotalPrice:"300,000"},
+        {name:"Dress Shoes", quantity:"20", stock:"100", subTotalPrice:"300,000"},
+        {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00", stock:"100", subTotalPrice:"300,000"},
+        {name:"Sweater", quantity:"70", stock:"100", subTotalPrice:"300,000"}]
+    },
+    {
+      totalPrice: "2243",
+      address: "Jalan 4 Kemayoran sebelah warkop",
+      distance: "10km",
+      status:"Waiting Seller Confirmation",
+      paymentMethod:"Cash On Demand",
+      orderTime:"1676889032000",
+      orderId: "8472789734nv9231jg2n",
+      itemGroups: [
+        {name:"Sweater", quantity:"70", stock:"100", subTotalPrice:"300,000"},
+        {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
+        {name:"Jacket", quantity:"1", stock:"100", subTotalPrice:"300,000"},
+        {name:"Dress Shoes", quantity:"20", stock:"100", subTotalPrice:"300,000"},
+        {name:"Milo", quantity:"412", stock:"100", subTotalPrice:"300,000"}]
+    },
+    {
+      totalPrice: "8764",
+      address: "Jl. Mawar rt/rw 14/12 Bpk. Marlin",
+      distance: "12km",
+      status:"Waiting Seller Confirmation",
+      paymentMethod:"Cash On Demand",
+      orderTime:"1676885432000",
+      orderId: "9231jg2n8472789734nv",
+      itemGroups: [
+        {name:"Milo", quantity:"412", stock:"100", subTotalPrice:"300,000"},
+        {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
+        {name:"Sweater", quantity:"70", stock:"100", subTotalPrice:"300,000"},
+        {name:"Dress Shoes", quantity:"20", stock:"100", subTotalPrice:"300,000"},
+        {name:"Jacket", quantity:"1", stock:"100", subTotalPrice:"300,000"}]
+    },
+    {
+      totalPrice: "4550",
+      address: "Jl. Kemurnian 2 No.4, Jakarta",
+      distance: "34km",
+      status:"Waiting Seller Confirmation",
+      paymentMethod:"Cash On Demand",
+      orderTime:"1676881832000",
+      orderId: "7891jg72734n2n84v923",
+      itemGroups: [
+        {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00"}]
+    }
 ]
+
+// Sweater Varsity Brand UCKS Asli Orisinil Katun Dijamin Tahan Lama S M L 2023 <br/>
+// 5  <br/>
+// 15  <br/>
+// Rp 1,000,000.00 <br/>
+// 20 Februari 2023 7:30 Malam   <br/>
+// Jl. Pesiungan 4 RT/RW 011/012, Kuningan, Jakarta  <br/>
+// 7 km  <br/>
+// Just Paid <br/>
+// Cash <br/>
 
 export default function OrdersPage() {
   const [expanded, setExpanded] = React.useState(false);
@@ -94,11 +183,11 @@ export default function OrdersPage() {
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-      <Typography variant="h3">
+      {/* <Typography variant="h3">
         Orders
-      </Typography>
+      </Typography> */}
       <Stack spacing={2}>
-        {data2.map(prop => (
+        {data4.map(prop => (
           <OrderCard props={prop}></OrderCard>    
         ))} 
         {/* <OrderCard props={{name:"Bandrek", quantity:"15"}}></OrderCard>     */}        

@@ -39,7 +39,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import SmallOrderCard from '../SmallOrderCard';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -68,16 +67,16 @@ const ExpandMore = styled((props) => {
 //     {name:"Dress Shoes", quantity:"20"}]
 // }
 
-export default function OrderCard({props}) {
+export default function SmallOrderCard({props}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  var d = new Date(parseInt(props.orderTime));
-  var date = d.toLocaleString();  
-  var isSingleItemKind = props.itemGroups.length === 1;
+  // var d = new Date(parseInt(props.orderTime));
+  // var date = d.toLocaleString();  
+  // var isSingleItemKind = props.itemGroups.length === 1;
 
   return (
       <Card sx={{ maxWidth: 345 }}>
@@ -95,8 +94,7 @@ export default function OrderCard({props}) {
             <MoreVertIcon />
           </IconButton>
         }
-        title= {isSingleItemKind ? props.itemGroups[0].name : props.orderId }
-        subheader= {date}
+        title= { props.name  }
       />
       <CardActions sx={{paddingTop:'0.5rem', paddingLeft:'1rem'}}>
           <span sx={{ display:'flex', flexWrap:'wrap', width:'100%', gap: 20 }}>
@@ -111,15 +109,15 @@ export default function OrderCard({props}) {
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> 20/2 22:10 </Button> */}
             {/* <PriceCheckIcon fontSize='small' aria-label="Payment verification" />
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> Paid </Button> */}
-            <PinDropIcon fontSize='small' aria-label="Delivery distance from me" />
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 100km </Button>
-            <AttachMoneyIcon fontSize='small' aria-label="Total payment" /> 
+            {/* <PinDropIcon fontSize='small' aria-label="Delivery distance from me" />
+            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 100km </Button> */}
+            <AttachMoneyIcon fontSize='small' aria-label="Subtotal payment" /> 
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> Rp 1 jt </Button>
-            <HandshakeIcon fontSize='small' aria-label="Payment Method" /> 
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> : </Button>
-            <PaymentsIcon color='green' sx={{color:'green'}} fontSize='small' aria-label="Cash" />
+            {/* <HandshakeIcon fontSize='small' aria-label="Payment Method" />  */}
+            {/* <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> : </Button>
+            <PaymentsIcon color='green' sx={{color:'green'}} fontSize='small' aria-label="Cash" /> */}
             {/* <AccountBalanceIcon fontSize='small' sx={{color:'blue'}} aria-label="Transfer" /> */}
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> </Button>
+            {/* <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> </Button> */}
             {/* <NearMeIcon fontSize='small' aria-label="" /> */}
           {/* </div> */}
           {/* <IconButton aria-label="hide order" >
@@ -138,31 +136,18 @@ export default function OrderCard({props}) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ padding:"10px"}}>
 
-           <b >Order ID:</b> {props.orderId} <br/>
-            <b>Total Price:</b> {props.totalPrice} <br/>
-            <b>Order Time:</b> {props.orderTime}   <br/>
-            <b>Address:</b> {props.address}  <br/>
-            <b>Distance:</b> {props.distance} <br/>
-            <b>Status:</b> {props.status} <br/>
-            <b>Payment Method:</b> {props.paymentMethod} <br/>
 
-            { isSingleItemKind ? <br/> : <div sx={{width:"100%", display: "flex", flexDirection:"column", alignItems:"center"}}><Typography variant="h5" sx={{alignSelf:"center"}} >Order Items:</Typography></div> }
 
-          <div style={{display:"flex", flexDirection:"column"}}>
-           {props.itemGroups.map(itemKind => (
              <div style={{display:"flex", flexDirection:"column"}}>
-              <SmallOrderCard props={itemKind}/>
-                {/* <Typography paragraph>
-                <b >Product Name:</b> {itemKind.name} <br/>
-                <b> Quantity:</b> {itemKind.quantity}  <br/>
-                <b> Stock:</b> {itemKind.stock}  <br/>
-                <b> Subtotal Price:</b> {itemKind.subTotalPrice} <br/>
+                <Typography paragraph>
+                <b >Product Name:</b> {props.name} <br/>
+                <b> Quantity:</b> {props.quantity}  <br/>
+                <b> Stock:</b> {props.stock}  <br/>
+                <b> Subtotal Price:</b> {props.subTotalPrice} <br/>
                 </Typography>
-               <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> */}
+               <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button>
             </div>
-            ))} 
-     
-        
+       
           {/* <div style={{display:"flex", flexDirection:"column"}}>
           <Typography paragraph>
             <b >Product Name:</b> {props.name} <br/>
@@ -172,7 +157,7 @@ export default function OrderCard({props}) {
 
           </Typography> */}
           {/* { isSingleItemKind? null : <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button> } */}
-          </div>
+   
       </Collapse>
     </Card>
   );
