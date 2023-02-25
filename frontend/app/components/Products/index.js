@@ -37,17 +37,14 @@ export function Products() {
   return (
     <>
       <Stack direction="row" justifyContent="end">
-        <ProductButton
-          startIcon={
-            <Link to="/">
-              <Add style={{ color: 'white' }}/>
-            </Link> 
-          }
-          height="35px"
-          fontSize="14px"
-          
-          name="Create"
-        />
+        <Link to="/product/create" style={{ textDecoration: 'none' }}>
+          <ProductButton
+            startIcon={<Add style={{ color: 'white' }}/>}
+            height="35px"
+            fontSize="14px"
+            name="Create"
+          />
+        </Link> 
       </Stack>
       <Stack direction="row" justifyContent="end">
         <Grid container spacing={4}>

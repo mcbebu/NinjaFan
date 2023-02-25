@@ -14,10 +14,10 @@ export default function HomePage() {
   return (
     <article>
       <Helmet>
-        <title>Home Page</title>
+        <title>Products page</title>
         <meta
           name="description"
-          content="A React.js Boilerplate application homepage"
+          content="products page"
         />
       </Helmet>
       <div>
