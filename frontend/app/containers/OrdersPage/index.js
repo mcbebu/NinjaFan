@@ -100,7 +100,7 @@ const data4 = [
       address: "Jl. Boediman No. 40, Bekasi",
       distance: "30km",
       status:"Waiting Seller Confirmation",
-      paymentMethod:"Cash On Demand",
+      paymentMethod:"Cash",
       orderTime:"1676892632000",
       orderId: "789734nv9231jg2n8472",
       itemGroups: [
@@ -115,7 +115,7 @@ const data4 = [
       address: "Jalan 4 Kemayoran sebelah warkop",
       distance: "10km",
       status:"Waiting Seller Confirmation",
-      paymentMethod:"Cash On Demand",
+      paymentMethod:"Bank",
       orderTime:"1676889032000",
       orderId: "8472789734nv9231jg2n",
       itemGroups: [
@@ -130,7 +130,7 @@ const data4 = [
       address: "Jl. Mawar rt/rw 14/12 Bpk. Marlin",
       distance: "12km",
       status:"Waiting Seller Confirmation",
-      paymentMethod:"Cash On Demand",
+      paymentMethod:"Cash",
       orderTime:"1676885432000",
       orderId: "9231jg2n8472789734nv",
       itemGroups: [
@@ -145,7 +145,7 @@ const data4 = [
       address: "Jl. Kemurnian 2 No.4, Jakarta",
       distance: "34km",
       status:"Waiting Seller Confirmation",
-      paymentMethod:"Cash On Demand",
+      paymentMethod:"Bank",
       orderTime:"1676881832000",
       orderId: "7891jg72734n2n84v923",
       itemGroups: [
