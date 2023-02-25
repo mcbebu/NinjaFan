@@ -31,21 +31,33 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-// interface ExpandMoreProps extends IconButtonProps {
-//   expand: boolean;
-// }
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
 
-// const ExpandMore = styled((props: ExpandMoreProps) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiCardMedia: {
+      styleOverrides: {
+        // Name of the slot
+        img: {
+          // Some CSS
+          height: '50px'
+        },
+      },
+    },
+  },
+});
 
 export default function OrdersPage() {
   const [expanded, setExpanded] = React.useState(false);
@@ -56,6 +68,7 @@ export default function OrdersPage() {
 
   return (
     <div>
+      <ThemeProvider theme={theme}>
       <Helmet>
         <title>Orders Page</title>
         <meta
@@ -66,6 +79,9 @@ export default function OrdersPage() {
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
+      <Typography variant="h3">
+        Pending Orders
+      </Typography>
       <Stack spacing={2}>
       <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -79,14 +95,15 @@ export default function OrdersPage() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title="Card"
         subheader="September 14, 2016"
       />
       <CardMedia
         component="img"
         height="194"
-        image="https://assets.klikindomaret.com/products/20124963/20124963_1.jpg"
+        image="https://img.ltwebstatic.com/images3_pi/2021/11/23/1637652358d85a6c954cf7f43fc2cecf25443803a4_thumbnail_900x.webp"
         alt="Paella dish"
+        styleOverrides="width=100px"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -102,14 +119,14 @@ export default function OrdersPage() {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        {/* <ExpandMore
+        <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </ExpandMore> */}
+        </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
@@ -170,6 +187,10 @@ export default function OrdersPage() {
           if you like.
         </Typography>
       </CardContent>
+    </Card>
+      </Stack>
+  </ThemeProvider>
+      {/* <List>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -177,14 +198,14 @@ export default function OrdersPage() {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        {/* <ExpandMore
+        <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </ExpandMore> */}
+        </ExpandMore>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
@@ -215,9 +236,6 @@ export default function OrdersPage() {
           </Typography>
         </CardContent>
       </Collapse>
-    </Card>
-      </Stack>
-      {/* <List>
         <ListItem>
           <ListItemTitle>
             <FormattedMessage {...messages.scaffoldingHeader} />
