@@ -64,6 +64,16 @@ const theme = createTheme({
   },
 });
 
+
+// const data = ["A", "B", "C" , "D" ,"E" ,"F"];
+const data2 = [
+    {name:"Bandrek", quantity:"30"},
+    {name:"Milo", quantity:"412"},
+    {name:"Sweater", quantity:"70"},
+    {name:"Jacket", quantity:"1"},
+    {name:"Dress Shoes", quantity:"20"}
+]
+
 export default function OrdersPage() {
   const [expanded, setExpanded] = React.useState(false);
 
@@ -85,14 +95,17 @@ export default function OrdersPage() {
         <FormattedMessage {...messages.header} />
       </H1>
       <Typography variant="h3">
-        Pending Orders
+        Orders
       </Typography>
       <Stack spacing={2}>
-        <OrderCard></OrderCard>
-        <OrderCard></OrderCard>
-        <OrderCard></OrderCard>
-        <OrderCard></OrderCard>
-        <OrderCard></OrderCard>
+        {data2.map(prop => (
+          <OrderCard props={prop}></OrderCard>    
+        ))} 
+        {/* <OrderCard props={{name:"Bandrek", quantity:"15"}}></OrderCard>     */}        
+        {/* <OrderCard props={{name:"", quantity:""}}></OrderCard>
+        <OrderCard props={{name:"", quantity:""}}></OrderCard>
+        <OrderCard props={{name:"", quantity:""}}></OrderCard>
+        <OrderCard props={{name:"", quantity:""}}></OrderCard> */}
       </Stack>
   </ThemeProvider>
     </div>
