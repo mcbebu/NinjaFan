@@ -12,6 +12,8 @@ const (
 type Order struct {
 	gorm.Model
 	TotalPrice    int32
+	BuyerName     string
+	ContactNumber string
 	Status        int8
 	Address1      string
 	Address2      string

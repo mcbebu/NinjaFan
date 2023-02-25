@@ -15,6 +15,8 @@ type CreateOrderRequest struct {
 	TotalPrice    int32                       `json:"total_price"`
 	Address1      string                      `json:"address_1"`
 	Address2      string                      `json:"address_2"`
+	BuyerName     string                      `json:"buyer_name"`
+	ContactNumber string                      `json:"contact_number"`
 	PaymentMethod int8                        `json:"payment_method"`
 }
 type CreateOrderProductRequest struct {
@@ -43,6 +45,8 @@ func CreateOrderHandler(c *gin.Context) {
 	orderID, err := model.AddOrder(model.Order{
 		TotalPrice:    createOrderRequest.TotalPrice,
 		Status:        model.PendingStatus,
+		BuyerName:     createOrderRequest.BuyerName,
+		ContactNumber: createOrderRequest.ContactNumber,
 		Address1:      createOrderRequest.Address1,
 		Address2:      createOrderRequest.Address2,
 		PaymentMethod: createOrderRequest.PaymentMethod,

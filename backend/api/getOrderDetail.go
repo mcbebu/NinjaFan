@@ -27,6 +27,8 @@ type GetOrderDetailModelResponse struct {
 	Address1      string                          `json:"address_1"`
 	Address2      string                          `json:"address_2"`
 	PaymentMethod int8                            `json:"payment_method"`
+	BuyerName     string                          `json:"buyer_name"`
+	ContactNumber string                          `json:"contact_number"`
 	Products      []GetOrderDetailProductResponse `json:"products"`
 }
 
@@ -88,6 +90,8 @@ func GetOrderDetailHandler(c *gin.Context) {
 		Address2:      order.Address2,
 		PaymentMethod: order.PaymentMethod,
 		Products:      getOrderDetailProductsResponse,
+		BuyerName:     order.BuyerName,
+		ContactNumber: order.ContactNumber,
 	}
 	c.JSON(200, GetOrderDetailResponse{
 		Error: "",
