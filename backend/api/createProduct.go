@@ -60,6 +60,7 @@ func CreateProductHandler(c *gin.Context) {
 		Dimension:   product.Dimension,
 		Weight:      product.Weight,
 		WeightUnit:  product.WeightUnit,
+		Currency:    product.Currency,
 	})
 
 	if err != nil {
