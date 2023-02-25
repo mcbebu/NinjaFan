@@ -174,11 +174,11 @@ const data5 = [
     orderTime:"1676792632000",
     orderId: "09u089gjhf9gy7s767698",
     itemGroups: [
-      {name:"LV Bag", quantity:"90", stock:"100", subTotalPrice:"300,000"},
-      {name:"Pringles", quantity:"1", stock:"100", subTotalPrice:"300,000"},
-      {name:"Hockey Shoes", quantity:"150", stock:"100", subTotalPrice:"300,000"},
-      {name:"Playstation", quantity:"14", stock:"15", subTotalPrice:"500,000.00", stock:"100", subTotalPrice:"300,000"},
-      {name:"Winter Cap", quantity:"35", stock:"100", subTotalPrice:"300,000"}]
+      {name:"LV Bag", quantity:"90", stock:"100", subTotalPrice:"70,000"},
+      {name:"Pringles", quantity:"1", stock:"100", subTotalPrice:"5,000"},
+      {name:"Hockey Shoes", quantity:"150", stock:"100", subTotalPrice:"5,576,000"},
+      {name:"Playstation", quantity:"14", stock:"15", subTotalPrice:"500,000.00", stock:"100", subTotalPrice:"1,906,000"},
+      {name:"Winter Cap", quantity:"35", stock:"100", subTotalPrice:"112,000"}]
   },
   {
     totalPrice: "1498",
@@ -189,11 +189,11 @@ const data5 = [
     orderTime:"1676879032000",
     orderId: "0gy7s7679u089gjhf9698",
     itemGroups: [
-      {name:"Pringles", quantity:"50", stock:"100", subTotalPrice:"300,000"},
-      {name:"Hockey", quantity:"220", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
-      {name:"LV Bag", quantity:"1", stock:"100", subTotalPrice:"300,000"},
+      {name:"Pringles", quantity:"50", stock:"100", subTotalPrice:"980,000"},
+      {name:"Hockey", quantity:"220", stock:"15", subTotalPrice:"765,000.00", stock:"100"},
+      {name:"LV Bag", quantity:"1", stock:"100", subTotalPrice:"609,000"},
       {name:"Dress Playstation", quantity:"20", stock:"100", subTotalPrice:"300,000"},
-      {name:"Winter Cap", quantity:"402", stock:"100", subTotalPrice:"300,000"}]
+      {name:"Winter Cap", quantity:"402", stock:"100", subTotalPrice:"7,898,000"}]
   },
   {
     totalPrice: "8764",
@@ -204,11 +204,11 @@ const data5 = [
     orderTime:"1676785432000",
     orderId: "76769809u089gjhf9gy7s",
     itemGroups: [
-      {name:"Winter Cap", quantity:"140", stock:"100", subTotalPrice:"300,000"},
-      {name:"Playstation", quantity:"1240", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
-      {name:"LV Bag", quantity:"70", stock:"100", subTotalPrice:"300,000"},
-      {name:"Pringles Shoes", quantity:"25", stock:"100", subTotalPrice:"300,000"},
-      {name:"Hockey", quantity:"1", stock:"100", subTotalPrice:"300,000"}]
+      {name:"Winter Cap", quantity:"140", stock:"100", subTotalPrice:"278,000"},
+      {name:"Playstation", quantity:"1240", stock:"15", subTotalPrice:"1,500,000.00", stock:"100"},
+      {name:"LV Bag", quantity:"70", stock:"100", subTotalPrice:"1,878,000"},
+      {name:"Pringles Shoes", quantity:"25", stock:"100", subTotalPrice:"76,000"},
+      {name:"Hockey", quantity:"1", stock:"100", subTotalPrice:"142,000"}]
   },
   {
     totalPrice: "4550",
@@ -219,7 +219,7 @@ const data5 = [
     orderTime:"1676781832000",
     orderId: "s76769809u089gjhf9gy7",
     itemGroups: [
-      {name:"Pringles", quantity:"1400", stock:"15", subTotalPrice:"500,000,000.00"}]
+      {name:"Pringles", quantity:"1400", stock:"15", subTotalPrice:"435,655,000.00"}]
   }
 ]
 
