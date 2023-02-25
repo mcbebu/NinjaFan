@@ -106,7 +106,7 @@ const data4 = [
       itemGroups: [
         {name:"Milo", quantity:"412", stock:"100", subTotalPrice:"300,000"},
         {name:"Jacket", quantity:"1", stock:"100", subTotalPrice:"300,000"},
-        {name:"Dress Shoes", quantity:"20", stock:"100", subTotalPrice:"300,000"},
+        {name:"Dress Shoes", quantity:"10", stock:"100", subTotalPrice:"300,000"},
         {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00", stock:"100", subTotalPrice:"300,000"},
         {name:"Sweater", quantity:"70", stock:"100", subTotalPrice:"300,000"}]
     },

@@ -139,6 +139,8 @@ export default function OrderCard({props}) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ padding:"10px"}}>
 
+          <Button sx={{ width:'auto', minWidth:'auto'}}> Change Status </Button><br/>
+
            <b >Order ID:</b> {props.orderId} <br/>
             <b>Total Price:</b> {props.totalPrice} <br/>
             <b>Order Time:</b> {props.orderTime}   <br/>
