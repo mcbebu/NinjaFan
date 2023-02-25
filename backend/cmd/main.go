@@ -1,9 +1,6 @@
 package main
 
 import (
-	"io"
-	"os"
-
 	"github.com/gin-gonic/gin"
 	"github.com/mjosephan2/ninjafanbe/api"
 	"github.com/mjosephan2/ninjafanbe/model"
@@ -12,12 +9,6 @@ import (
 func main() {
 	model.Init()
 
-	// Disable Console Color, you don't need console color when writing the logs to file.
-	gin.DisableConsoleColor()
-
-	// Logging to a file.
-	f, _ := os.Create("log/gin.log")
-	gin.DefaultWriter = io.MultiWriter(f)
 	r := gin.Default()
 
 	r.GET("/ping", func(c *gin.Context) {
@@ -30,6 +21,8 @@ func main() {
 	r.GET("/product/get", api.GetProductDetailHandler)
 	r.POST("/product/edit", api.EditProductDetailHandler)
 	r.POST("/order/create", api.CreateOrderHandler)
+	r.GET("/orders/get", api.GetOrdersHandler)
+	r.GET("/order/detail", api.GetOrderDetailHandler)
 	r.GET("/products/get", api.GetProducts)
 
 	err := r.Run()

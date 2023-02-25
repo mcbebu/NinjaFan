@@ -5,3 +5,6 @@ build:
 
 run: build
 	./bin/server
+
+runner:
+	go run ./cmd/main.go

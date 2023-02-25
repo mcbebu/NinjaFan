@@ -8,7 +8,7 @@ import (
 var defaultDB *gorm.DB
 
 func Init() {
-	db, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open("ninja_fan_db.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
@@ -23,8 +23,12 @@ func Init() {
 	if err != nil {
 		panic("failed to migrate")
 	}
-}
-
-func insertDummyData() {
-
+	err = defaultDB.AutoMigrate(&Link{})
+	if err != nil {
+		panic("failed to migrate")
+	}
+	err = defaultDB.AutoMigrate(&OrderProduct{})
+	if err != nil {
+		panic("failed to migrate")
+	}
 }

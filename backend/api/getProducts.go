@@ -1,6 +1,8 @@
 package api
 
 import (
+	"log"
+
 	"github.com/gin-gonic/gin"
 	"github.com/mjosephan2/ninjafanbe/model"
 )
@@ -11,18 +13,18 @@ const (
 )
 
 type GetProductsResponse struct {
-	Error string                 `json:"error"`
-	Data  []ProductsLinkResponse `json:"data"`
+	Error string                    `json:"error"`
+	Data  []GetProductsLinkResponse `json:"data"`
 }
 
-type ProductsLinkResponse struct {
+type GetProductsLinkResponse struct {
 	model.Product
-	Links []LinksResponse `json:"links"`
+	Links []GetProductLinksResponse `json:"links"`
 }
 
-type LinksResponse struct {
-	name string
-	text string
+type GetProductLinksResponse struct {
+	Name string `json:"name"`
+	Text string `json:"text"`
 }
 
 func GetProducts(c *gin.Context) {
@@ -31,24 +33,27 @@ func GetProducts(c *gin.Context) {
 		c.JSON(500, errorResponse(failedToGetProducts))
 		return
 	}
-	productLinksResponse := []ProductsLinkResponse{}
+	productLinksResponse := []GetProductsLinkResponse{}
 	for i := range products {
 		links, err := model.GetLinks(products[i].ID)
 		if err != nil {
 			c.JSON(500, errorResponse(failedToGetLinks))
+			return
 		}
-		linksResponse := []LinksResponse{}
-		for i := range links {
-			linksResponse = append(linksResponse, LinksResponse{
-				name: links[i].Media,
-				text: links[i].URL,
+		linksResponse := []GetProductLinksResponse{}
+
+		log.Println(links)
+		for j := range links {
+			linksResponse = append(linksResponse, GetProductLinksResponse{
+				Name: links[j].Media,
+				Text: links[j].URL,
 			})
 		}
 
-		productLinksResponse = append(productLinksResponse, ProductsLinkResponse{
+		productLinksResponse = append(productLinksResponse, GetProductsLinkResponse{
 			Product: products[i],
 			Links:   linksResponse,
 		})
 	}
-	c.JSON(200, products)
+	c.JSON(200, &GetProductsResponse{Data: productLinksResponse})
 }

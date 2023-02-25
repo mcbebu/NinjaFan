@@ -1,6 +1,8 @@
 package api
 
 import (
+	"log"
+
 	"github.com/mjosephan2/ninjafanbe/model"
 
 	"github.com/gin-gonic/gin"
@@ -8,6 +10,7 @@ import (
 
 const (
 	failedToCreateProduct = "failed_to_create_product"
+	failedToStoreLinks    = "failed_to_store_links"
 )
 
 type CreateProductRequest struct {
@@ -20,13 +23,20 @@ type CreateProductRequest struct {
 	ImageURL  string `json:"image_url"`
 	Dimension string `json:"dimension"`
 	// unit of 1000
-	Weight     uint `json:"weight"`
-	WeightUnit uint `json:"weight_unit"`
+	Weight     uint   `json:"weight"`
+	WeightUnit string `json:"weight_unit"`
+
+	Links []CreateProductLinkRequest `json:"links"`
 }
 
 type CreateProductResponse struct {
 	Error string    `json:"error"`
 	Data  ProductID `json:"data"`
+}
+
+type CreateProductLinkRequest struct {
+	Name string `json:"name"`
+	Text string `json:"text"`
 }
 
 type ProductID struct {
@@ -54,6 +64,23 @@ func CreateProductHandler(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, errorResponse(failedToCreateProduct))
+		return
+	}
+
+	var linksModel []model.Link
+	for i := range product.Links {
+		linkModel := model.Link{
+			ProductID: id,
+			URL:       product.Links[i].Text,
+			Media:     product.Links[i].Name,
+		}
+		linksModel = append(linksModel, linkModel)
+	}
+
+	err = model.AddLinks(linksModel)
+	if err != nil {
+		log.Println(err)
+		c.JSON(500, errorResponse(failedToStoreLinks))
 		return
 	}
 	c.JSON(200, &CreateProductResponse{
