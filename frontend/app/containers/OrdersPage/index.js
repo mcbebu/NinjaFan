@@ -85,7 +85,7 @@ export default function OrdersPage() {
       <CardMedia
         component="img"
         height="194"
-        image="/images/mascara.jpg"
+        image="https://assets.klikindomaret.com/products/20124963/20124963_1.jpg"
         alt="Paella dish"
       />
       <CardContent>
@@ -159,7 +159,8 @@ export default function OrdersPage() {
       <CardMedia
         component="img"
         height="194"
-        image="/static/images/cards/paella.jpg"
+        // image="/app/images/mascara.jpg"
+        image="https://img.ltwebstatic.com/images3_pi/2021/09/24/1632446601aa055b3bb28abb469ab8a99817751931_thumbnail_900x.webp"
         alt="Paella dish"
       />
       <CardContent>
