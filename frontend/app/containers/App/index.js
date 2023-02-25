@@ -19,6 +19,7 @@ import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
 import ProductsPage from '../ProductsPage';
+import CataloguePage from '../CataloguePage';
 
 const AppWrapper = styled.div`
   max-width: calc(500px);
@@ -32,16 +33,9 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      {/* <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <Header /> */}
       <Switch>
-        <Route path="/features" component={FeaturePage} />
         <Route path="/products" component={ProductsPage} />
+        <Route path="/catalogue" component={CataloguePage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
     </AppWrapper>

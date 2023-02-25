@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import ProductsViewPage from './ProductsViewPage';
 import ProductsEditPage from './ProductsEditPage';
 import ProductsCreatePage from './ProductsCreatePage';
 import HomePage from '../HomePage';
-import { ProductContext } from '../../components/Products';
+import CatalogueProductsPage from '../CataloguePage/CatalogueProductsPage';
+
+export const CatalogueContext = React.createContext({})
 
 export default function ProductsPage() {
+    const [orders, setOrders] = useState({})
     return (
-    <div>
+        <CatalogueContext.Provider value={{orders, setOrders}}>
         <Switch>
             <Route path={`/products/create`}>
                 <ProductsCreatePage />
+            </Route>
+            <Route path={`/products/catalogue`}>
+                <CatalogueProductsPage />
             </Route>
             <Route path={`/products/:productID/view`}>
                 <ProductsViewPage />
@@ -24,7 +30,7 @@ export default function ProductsPage() {
                 <HomePage />
             </Route>
         </Switch>
-    </div>
+        </CatalogueContext.Provider>
     );
   }
   

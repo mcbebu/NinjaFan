@@ -22,16 +22,16 @@ export function Products() {
       </Stack>
       <Stack direction="row" justifyContent="end">
         <Grid container spacing={4}>
-        {
-          productDatas.map((prod) => {
-            return (
-              <Grid item>
-                <ProductCard product={prod} />
-              </Grid>
-            )
-          })
-        }
-      </Grid>
+          {
+            productDatas.map((prod) => {
+              return (
+                <Grid item>
+                  <ProductCard product={prod} />
+                </Grid>
+              )
+            })
+          }
+        </Grid>
       </Stack>
       </> 
     )
