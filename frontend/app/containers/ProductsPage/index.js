@@ -6,6 +6,7 @@ import ProductsEditPage from './ProductsEditPage';
 import ProductsCreatePage from './ProductsCreatePage';
 import HomePage from '../HomePage';
 import CatalogueProductsPage from '../CataloguePage/CatalogueProductsPage';
+import { CatalogueCartPage } from '../CataloguePage/CatalogueCart';
 
 export const CatalogueContext = React.createContext({})
 
@@ -17,8 +18,11 @@ export default function ProductsPage() {
             <Route path={`/products/create`}>
                 <ProductsCreatePage />
             </Route>
-            <Route path={`/products/catalogue`}>
+            <Route exact path={`/products/catalogue`}>
                 <CatalogueProductsPage />
+            </Route>
+            <Route exact path={`/products/catalogue/cart`}>
+                <CatalogueCartPage />
             </Route>
             <Route path={`/products/:productID/view`}>
                 <ProductsViewPage />
