@@ -5,10 +5,9 @@ import ProductViewPage from './ProductViewPage';
 import ProductEditPage from './ProductEditPage';
 import ProductCreatePage from './ProductCreatePage';
 import HomePage from '../HomePage';
+import { ProductContext } from '../../components/Products';
 
 export default function ProductPage() {
-
-
     return (
     <div>
         <Switch>

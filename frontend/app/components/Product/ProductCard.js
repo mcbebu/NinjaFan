@@ -4,24 +4,24 @@ import { ProductButton } from './ProductButton';
 import { Edit, InsertLink } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
-export function ProductCard({
-  name,
-  price,
-  id,
-  imageUrl
-}) {
+
+export const ProductContext = React.createContext();
+
+
+export function ProductCard({ product }) {
   return (
-    <Card sx={{ width: 150, height: 198 }}>
-      <Link to={`/product/${id}/view`} style={{ textDecoration: 'none', color: 'black' }}>
-        <CardMedia
-          sx={{ height: 119 }}
-          image={imageUrl}
-        />
-        <CardContent>
+    <Card sx={{ width: 150, height: 225 }}>
+      <ProductContext.Provider value={{ data: product }}>
+        <Link to={`/product/${product.id}/view`} style={{ textDecoration: 'none', color: 'black' }}>
+          <CardMedia
+            sx={{ height: 119 }}
+            image={product.imageUrl}
+          />
+          <CardContent>
           <Grid container>
             <Grid item>
               <Typography sx={{ fontSize: 14, fontWeight: 'medium' }}>
-                {name}
+                {product.name}
               </Typography>
             </Grid>
           </Grid>
@@ -37,7 +37,7 @@ export function ProductCard({
               <Grid container>
                 <Grid item>
                   <Typography sx={{ fontSize: 12, fontWeight: 'medium' }}>
-                    {price}
+                    {product.currency} {product.price}
                   </Typography>
                 </Grid>
               </Grid>
@@ -53,7 +53,8 @@ export function ProductCard({
             </Grid>
           </Grid>
         </CardContent>
-      </Link>
+        </Link>
+      </ProductContext.Provider>
     </Card>
   )
 }

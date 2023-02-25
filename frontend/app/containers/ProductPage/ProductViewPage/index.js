@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {  useParams } from 'react-router-dom';
+import {  useHistory, useParams } from 'react-router-dom';
 import { productDatas } from '../../../tests/data/product';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -16,60 +16,52 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // TODO update CSS
 export default function ProductViewPage() {
-    let {productID} = useParams();
-    if (productID == 0) {
-        return <></>
+    const { productID: id } = useParams();
+    const data = productDatas.find((data ) => data.id = id)
+    if (!data) {
+      return <p></p>
     }
 
-    const [data, setData] = React.useState([])
-    // API to get the product list (use effect)
-    useEffect(()=>{
-        // TEST data
-        if (productID in productDatas) {
-            setData(productDatas[productID])
-        }
-    })
-
     return (
-      <>
-        <Stack>
-          <Image src={data.imgURL} sx={{maxHeight: '250px' }}/>
-        </Stack>
-        
-        <Stack sx={{ marginTop: '15px' }}>
-          <Typography gutterBottom variant="h5" component="div">
-            {data.title}
-          </Typography>
-        </Stack>
+        <>
+          <Stack>
+            <Image src={data.imageUrl} sx={{maxHeight: '250px' }}/>
+          </Stack>
+          
+          <Stack sx={{ marginTop: '15px' }}>
+            <Typography gutterBottom variant="h5" component="div">
+              {data.name}
+            </Typography>
+          </Stack>
 
-        <Stack sx={{ marginTop: '10px' }}>
-          <Typography variant="body2">
-            Price: <b> {data.price/100} {data.currency} </b>
-          </Typography>
-        </Stack>
+          <Stack sx={{ marginTop: '10px' }}>
+            <Typography variant="body2">
+              Price: <b> {data.price/100} {data.currency} </b>
+            </Typography>
+          </Stack>
 
-        <Stack sx={{ marginTop: '10px' }}>
-          <Typography variant="body2">
-            Weight: <b> {data.weight} {data.weightUnit} </b>
-          </Typography>
-        </Stack>
+          <Stack sx={{ marginTop: '10px' }}>
+            <Typography variant="body2">
+              Weight: <b> {data.weight} {data.weightUnit} </b>
+            </Typography>
+          </Stack>
 
-        <Stack sx={{ marginTop: '10px' }}>
-          <Typography variant="body2">
-            Status: <b> {data.stock ? 'Available' : 'Not available' } </b>
-          </Typography>
-        </Stack>
+          <Stack sx={{ marginTop: '10px' }}>
+            <Typography variant="body2">
+              Status: <b> {data.stock ? 'Available' : 'Not available' } </b>
+            </Typography>
+          </Stack>
 
-        <Stack sx={{ marginTop: '10px' }}>
-          <Typography variant="body2" sx={{ marginTop: '15px', lineHeight: '30px', textAlign: 'justify' }}>
-            {data.description}
-          </Typography>
-        </Stack>
+          <Stack sx={{ marginTop: '10px' }}>
+            <Typography variant="body2" sx={{ marginTop: '15px', lineHeight: '30px', textAlign: 'justify' }}>
+              {data.description}
+            </Typography>
+          </Stack>
 
-        <LinkList links={data.links ? data.links : []} />
-        <ToastContainer />
-      </>
-    );
+          <LinkList links={data.links ? data.links : []} />
+          <ToastContainer />
+        </>
+      );
   }
 
   function LinkList({ links }) {
