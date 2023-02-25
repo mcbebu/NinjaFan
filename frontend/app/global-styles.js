@@ -16,8 +16,13 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
+  h1 {
+    color: #FAFAFA;
+  }
+
   #app {
-    background-color: #fafafa;
+    background-color: #C10230;
+
     min-height: 100%;
     min-width: 100%;
   }

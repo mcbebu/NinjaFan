@@ -115,10 +115,10 @@ export default function SmallOrderCard({props, isSingleItemKind}) {
             {/* <FlagIcon fontSize='small' /> */}
             {/* <div style="display:flex;flex-wrap:wrap"> */}
               <ShoppingCartIcon fontSize='small' aria-label="Quantity" /> 
-              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> 5</Button>
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> {props.quantity} </Button>
               {/* <PinDropIcon fontSize='small' aria-label="Postcode" /> */}
               <InventoryIcon fontSize='small' aria-label="Stock" />
-              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 15 </Button>
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> {props.stock} </Button>
               {/* <ScheduleIcon fontSize='small' aria-label="Order creation time" /> 
               <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> 20/2 22:10 </Button> */}
               {/* <PriceCheckIcon fontSize='small' aria-label="Payment verification" />
@@ -126,7 +126,7 @@ export default function SmallOrderCard({props, isSingleItemKind}) {
               {/* <PinDropIcon fontSize='small' aria-label="Delivery distance from me" />
               <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 100km </Button> */}
               <AttachMoneyIcon fontSize='small' aria-label="Subtotal payment" /> 
-              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> Rp 1 jt </Button>
+              <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> {props.subTotalPrice} </Button>
               {/* <HandshakeIcon fontSize='small' aria-label="Payment Method" />  */}
               {/* <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> : </Button>
               <PaymentsIcon color='green' sx={{color:'green'}} fontSize='small' aria-label="Cash" /> */}

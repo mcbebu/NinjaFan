@@ -17,7 +17,9 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import OrdersPage from 'containers/OrdersPage';
 import Footer from 'components/Footer';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+import GlobalStyles from '@mui/material/GlobalStyles';
 import GlobalStyle from '../../global-styles';
 import ProductPage from '../ProductPage';
 import NinjaBizPage from '../NinjaBizPage';
@@ -31,26 +33,44 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+const themeRed = createTheme({
+  palette: {
+    background: {
+      default: "#C10230"
+    }
+  }
+});
+
 export default function App() {
   return (
-    <AppWrapper>
-      {/* <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <Header /> */}
-      <Switch>
-        <Route path="/a" component={HomePage} />
-        <Route path="/orders" component={OrdersPage} />
-        <Route path="/biz" component={NinjaBizPage} />
-        <Route path="/features" component={FeaturePage} />
-        <Route path="/product" component={ProductPage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
-      <Footer />
-      <GlobalStyle />
-    </AppWrapper>
+    // <ThemeProvider theme={themeRed}>
+      <AppWrapper>
+        <GlobalStyles
+        styles={{
+          body: { backgroundColor: "lightyellow" }
+        }}
+        />
+        <React.Fragment>
+          <GlobalStyles styles={{ html: {backgroundColor: "red" }, body: { backgroundColor: "lightyellow" } }} />
+        </React.Fragment>
+        {/* <Helmet
+          titleTemplate="%s - React.js Boilerplate"
+          defaultTitle="React.js Boilerplate"
+        >
+          <meta name="description" content="A React.js Boilerplate application" />
+        </Helmet>
+        <Header /> */}
+        <Switch>
+          <Route path="/a" component={HomePage} />
+          <Route path="/orders" component={OrdersPage} />
+          <Route path="/biz" component={NinjaBizPage} />
+          <Route path="/features" component={FeaturePage} />
+          <Route path="/product" component={ProductPage} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
+        <Footer />
+        <GlobalStyle />
+      </AppWrapper>
+    // </ThemeProvider>
   );
 }

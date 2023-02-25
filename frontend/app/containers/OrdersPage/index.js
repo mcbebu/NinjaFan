@@ -58,10 +58,21 @@ const theme = createTheme({
           // Some CSS
           height: '50px',
           width: 'auto'
-        },
-      },
-    },
-  },
+        }
+        // html: {
+        //   backgroundColor: 'red'
+        // },
+        // html: {
+        //   backgroundColor: 'red'
+        // }
+      }
+    }
+  }
+  // palette: {
+  //   background: {
+  //     default: "#C10230"
+  //   }
+  // }
 });
 
 
