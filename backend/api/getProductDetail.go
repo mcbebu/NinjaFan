@@ -1,7 +1,6 @@
 package api
 
 import (
-	"log"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -52,7 +51,7 @@ func GetProductDetailHandler(c *gin.Context) {
 			Text: links[j].URL,
 		})
 	}
-	log.Println(linksResponse)
+
 	c.JSON(200, GetProductResponse{
 		Error: "",
 		Data: GetProductsLinkResponse{
