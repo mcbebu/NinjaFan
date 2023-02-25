@@ -37,7 +37,7 @@ const imageUrls = [
 ]
 
 // TODO upload and button create
-export default function ProductCreatePage() {
+export default function ProductsCreatePage() {
   const {control, handleSubmit} = useForm();
   const history = useHistory();
 
@@ -58,20 +58,19 @@ export default function ProductCreatePage() {
         links: [
             {
                 "name": "Instagram",
-                "text": `https://ninjacatalogue.com/catalog/${id}/view?channel=instagram`,
+                "text": `https://ninjacatalogue.com/catalog/products/${id}/view?channel=instagram`,
             },
             {
                 "name": "Tiktok",
-                "text": `https://ninjacatalogue.com/catalog/${id}/view?channel=tiktok`
+                "text": `https://ninjacatalogue.com/catalog/products/${id}/view?channel=tiktok`
             },
             {
                 "name": "Whatsapp",
-                "text": `https://ninjacatalogue.com/catalog/${id}/view?channel=whatsapp`
+                "text": `https://ninjacatalogue.com/catalog/products/${id}/view?channel=whatsapp`
             }
         ]
     })
-    console.log('datas: ', productDatas)
-    history.push('/product')
+    history.push('/products')
   }
 
   return (

@@ -15,7 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // TODO update CSS
-export default function ProductViewPage() {
+export default function ProductsViewPage() {
     const { productID } = useParams();
 
     const [data, setData] = useState(undefined)

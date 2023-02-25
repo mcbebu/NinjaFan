@@ -23,7 +23,7 @@ var dimensionData = [
   ];
 
 // TODO upload and button create
-export default function ProductEditPage() {
+export default function ProductsEditPage() {
     let {productID} = useParams();
     if (productID == 0) {
         return <></>

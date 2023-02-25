@@ -12,7 +12,7 @@ export function ProductCard({ product }) {
   return (
     <Card sx={{ width: 150, height: 225 }}>
       <ProductContext.Provider value={{ data: product }}>
-        <Link to={`/product/${product.id}/view`} style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to={`/products/${product.id}/view`} style={{ textDecoration: 'none', color: 'black' }}>
           <CardMedia
             sx={{ height: 119 }}
             image={product.imageUrl}

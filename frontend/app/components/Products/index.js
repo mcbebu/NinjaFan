@@ -11,7 +11,7 @@ export function Products() {
   return (
     <>
       <Stack direction="row" justifyContent="end">
-        <Link to="/product/create" style={{ textDecoration: 'none' }}>
+        <Link to="/products/create" style={{ textDecoration: 'none' }}>
           <ProductButton
             startIcon={<Add style={{ color: 'white' }}/>}
             height="35px"
