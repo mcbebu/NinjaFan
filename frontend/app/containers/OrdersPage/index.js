@@ -104,26 +104,26 @@ const data4 = [
       orderTime:"1676892632000",
       orderId: "789734nv9231jg2n8472",
       itemGroups: [
-        {name:"Milo", quantity:"412", stock:"100", subTotalPrice:"300,000"},
+        {name:"Milo", quantity:"42", stock:"100", subTotalPrice:"300,000"},
         {name:"Jacket", quantity:"1", stock:"100", subTotalPrice:"300,000"},
-        {name:"Dress Shoes", quantity:"10", stock:"100", subTotalPrice:"300,000"},
-        {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00", stock:"100", subTotalPrice:"300,000"},
-        {name:"Sweater", quantity:"70", stock:"100", subTotalPrice:"300,000"}]
+        {name:"Dress Shoes", quantity:"15", stock:"100", subTotalPrice:"300,000"},
+        {name:"Bandrek", quantity:"1", stock:"15", subTotalPrice:"500,000.00", stock:"100", subTotalPrice:"300,000"},
+        {name:"Sweater", quantity:"35", stock:"100", subTotalPrice:"300,000"}]
     },
     {
       totalPrice: "2243",
       address: "Jalan 4 Kemayoran sebelah warkop",
       distance: "10km",
       status:"Waiting Seller Confirmation",
-      paymentMethod:"Bank",
+      paymentMethod:"Cash",
       orderTime:"1676889032000",
       orderId: "8472789734nv9231jg2n",
       itemGroups: [
-        {name:"Sweater", quantity:"70", stock:"100", subTotalPrice:"300,000"},
-        {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
+        {name:"Sweater", quantity:"50", stock:"100", subTotalPrice:"300,000"},
+        {name:"Bandrek", quantity:"20", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
         {name:"Jacket", quantity:"1", stock:"100", subTotalPrice:"300,000"},
         {name:"Dress Shoes", quantity:"20", stock:"100", subTotalPrice:"300,000"},
-        {name:"Milo", quantity:"412", stock:"100", subTotalPrice:"300,000"}]
+        {name:"Milo", quantity:"402", stock:"100", subTotalPrice:"300,000"}]
     },
     {
       totalPrice: "8764",
@@ -135,9 +135,9 @@ const data4 = [
       orderId: "9231jg2n8472789734nv",
       itemGroups: [
         {name:"Milo", quantity:"412", stock:"100", subTotalPrice:"300,000"},
-        {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
+        {name:"Bandrek", quantity:"300", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
         {name:"Sweater", quantity:"70", stock:"100", subTotalPrice:"300,000"},
-        {name:"Dress Shoes", quantity:"20", stock:"100", subTotalPrice:"300,000"},
+        {name:"Dress Shoes", quantity:"25", stock:"100", subTotalPrice:"300,000"},
         {name:"Jacket", quantity:"1", stock:"100", subTotalPrice:"300,000"}]
     },
     {
@@ -152,6 +152,67 @@ const data4 = [
         {name:"Bandrek", quantity:"30", stock:"15", subTotalPrice:"500,000.00"}]
     }
 ]
+
+const data5 = [
+  {
+    totalPrice: "6246",
+    address: "Jl. Boediman No. 40, Bekasi",
+    distance: "500km",
+    status:"Waiting Seller Confirmation",
+    paymentMethod:"Bank",
+    orderTime:"1676792632000",
+    orderId: "09u089gjhf9gy7s767698",
+    itemGroups: [
+      {name:"LV Bag", quantity:"90", stock:"100", subTotalPrice:"300,000"},
+      {name:"Pringles", quantity:"1", stock:"100", subTotalPrice:"300,000"},
+      {name:"Hockey Shoes", quantity:"150", stock:"100", subTotalPrice:"300,000"},
+      {name:"Playstation", quantity:"14", stock:"15", subTotalPrice:"500,000.00", stock:"100", subTotalPrice:"300,000"},
+      {name:"Winter Cap", quantity:"35", stock:"100", subTotalPrice:"300,000"}]
+  },
+  {
+    totalPrice: "1498",
+    address: "Jalan 4 Kemayoran sebelah warkop",
+    distance: "140km",
+    status:"Waiting Seller Confirmation",
+    paymentMethod:"Bank",
+    orderTime:"1676879032000",
+    orderId: "0gy7s7679u089gjhf9698",
+    itemGroups: [
+      {name:"Pringles", quantity:"50", stock:"100", subTotalPrice:"300,000"},
+      {name:"Hockey", quantity:"220", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
+      {name:"LV Bag", quantity:"1", stock:"100", subTotalPrice:"300,000"},
+      {name:"Dress Playstation", quantity:"20", stock:"100", subTotalPrice:"300,000"},
+      {name:"Winter Cap", quantity:"402", stock:"100", subTotalPrice:"300,000"}]
+  },
+  {
+    totalPrice: "8764",
+    address: "Jl. Mawar rt/rw 14/12 Bpk. Marlin",
+    distance: "120km",
+    status:"Waiting Seller Confirmation",
+    paymentMethod:"Bank",
+    orderTime:"1676785432000",
+    orderId: "76769809u089gjhf9gy7s",
+    itemGroups: [
+      {name:"Winter Cap", quantity:"140", stock:"100", subTotalPrice:"300,000"},
+      {name:"Playstation", quantity:"1240", stock:"15", subTotalPrice:"500,000.00", stock:"100"},
+      {name:"LV Bag", quantity:"70", stock:"100", subTotalPrice:"300,000"},
+      {name:"Pringles Shoes", quantity:"25", stock:"100", subTotalPrice:"300,000"},
+      {name:"Hockey", quantity:"1", stock:"100", subTotalPrice:"300,000"}]
+  },
+  {
+    totalPrice: "4550",
+    address: "Jl. Kemurnian 2 No.4, Jakarta",
+    distance: "345km",
+    status:"Waiting Seller Confirmation",
+    paymentMethod:"Cash",
+    orderTime:"1676781832000",
+    orderId: "s76769809u089gjhf9gy7",
+    itemGroups: [
+      {name:"Pringles", quantity:"1400", stock:"15", subTotalPrice:"500,000,000.00"}]
+  }
+]
+
+var chosenData = data5;
 
 // Sweater Varsity Brand UCKS Asli Orisinil Katun Dijamin Tahan Lama S M L 2023 <br/>
 // 5  <br/>
@@ -187,7 +248,7 @@ export default function OrdersPage() {
         Orders
       </Typography> */}
       <Stack spacing={2}>
-        {data4.map(prop => (
+        {chosenData.map(prop => (
           <OrderCard props={prop}></OrderCard>    
         ))} 
         {/* <OrderCard props={{name:"Bandrek", quantity:"15"}}></OrderCard>     */}        

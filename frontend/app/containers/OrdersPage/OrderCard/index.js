@@ -78,6 +78,12 @@ export default function OrderCard({props}) {
   var d = new Date(parseInt(props.orderTime));
   var date = d.toLocaleString();  
   var isSingleItemKind = props.itemGroups.length === 1;
+  var totalOrders = 0;
+  var firstStock = props.itemGroups[0].stock;
+
+  for (let item of props.itemGroups) {
+      totalOrders += parseInt(item.quantity);
+  }
 
   return (
       <Card sx={{ maxWidth: 345 }}>
@@ -103,16 +109,17 @@ export default function OrderCard({props}) {
           {/* <FlagIcon fontSize='small' /> */}
           {/* <div style="display:flex;flex-wrap:wrap"> */}
             <ShoppingCartIcon fontSize='small' aria-label="Quantity" /> 
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> 5 </Button>
+            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> {totalOrders} </Button>
             {/* <PinDropIcon fontSize='small' aria-label="Postcode" /> */}
-            <InventoryIcon fontSize='small' aria-label="Stock" />
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> 15 </Button>
+            {isSingleItemKind ? 
+            <InventoryIcon fontSize='small' aria-label="Stock" />: null}
+             {isSingleItemKind ? 
+            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> {firstStock} </Button>
+            : null}
             {/* <ScheduleIcon fontSize='small' aria-label="Order creation time" /> 
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> 20/2 22:10 </Button> */}
             {/* <PriceCheckIcon fontSize='small' aria-label="Payment verification" />
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ margin:0, padding:0, width:'auto', minWidth:'auto'}}> Paid </Button> */}
-            <PinDropIcon fontSize='small' aria-label="Delivery distance from me" />
-            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> {props.distance} </Button>
             <AttachMoneyIcon fontSize='small' aria-label="Total payment" /> 
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{  width:'auto', minWidth:'auto'}}> {props.totalPrice} </Button>
             <HandshakeIcon fontSize='small' aria-label="Payment Method" /> 
@@ -121,6 +128,8 @@ export default function OrderCard({props}) {
             <PaymentsIcon color='green' sx={{color:'green'}} fontSize='small' aria-label="Cash" /> :
             <AccountBalanceIcon fontSize='small' sx={{color:'blue'}} aria-label="Transfer" /> }
             <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> </Button>
+            <PinDropIcon fontSize='small' aria-label="Delivery distance from me" />
+            <Button size='small' variant='text' disableRipple disableFocusRipple sx={{ width:'auto', minWidth:'auto'}}> {props.distance} </Button>
             {/* <NearMeIcon fontSize='small' aria-label="" /> */}
           {/* </div> */}
           {/* <IconButton aria-label="hide order" >
