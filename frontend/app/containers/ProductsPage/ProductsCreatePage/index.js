@@ -19,7 +19,7 @@ const dimensionData = [
   },
   {
     value: 'L',
-    label: 'L(...cm)'
+    label: 'L(40x50x30 cm)'
   }
 ];
 
