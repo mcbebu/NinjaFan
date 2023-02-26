@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const BACKEND_URL = 'http://localhost:8080';
+const BACKEND_HOST = process.env.REACT_APP_BACKEND_HOST;
 
 const customAxios = axios.create({
-  baseURL: BACKEND_URL,
+  baseURL: BACKEND_HOST,
 });
 
 export default customAxios;
