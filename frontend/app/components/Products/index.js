@@ -25,7 +25,7 @@ export function Products() {
       <Grid container sx={{ marginTop: '20px' }} direction="row" justifyContent="space-between">
         <Grid item>
           <CopyToClipboard
-            text={`http://localhost:3000/products/catalogue`}
+            text={`${process.env.REACT_APP_FRONTEND_HOST}/products/catalogue`}
             onCopy={() => {toast("Link has been copied successfully")}}
           >
           <Button sx={{ backgroundColor: '#C10230', color: 'white', textTransform: 'none' }}>

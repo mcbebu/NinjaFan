@@ -26,9 +26,16 @@ const dimensionData = [
 
 const imageUrls = [
   'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166',
-  'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166',
-  'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166',
-  'https://cf.shopee.sg/file/598d0e215d23168a340f632850b1e166'
+  "https://assets.klikindomaret.com/promos/20230215_07_00_20230228_23_00/10003517/10003517_1.jpg",
+  "https://img.ltwebstatic.com/images3_pi/2021/11/23/1637652358d85a6c954cf7f43fc2cecf25443803a4_thumbnail_900x.webp",
+  "https://assets.klikindomaret.com/products/20109377/20109377_1.jpg",
+  "https://static.wixstatic.com/media/afe640_8f6804db1fce486da5aefbc19b1205ff~mv2.jpg/v1/fill/w_1000,h_1000,al_c,q_85/afe640_8f6804db1fce486da5aefbc19b1205ff~mv2.webp",
+  "https://assets.klikindomaret.com/products/20128384/20128384_1.jpg",
+  "https://assets.klikindomaret.com/products/20124963/20124963_1.jpg",
+  "https://assets.klikindomaret.com/products/10036631/10036631_1.jpg",
+  "https://assets.klikindomaret.com/products/20092043/20092043_1.jpg",
+  "https://assets.klikindomaret.com/products/20104841/20104841_1.jpg",
+  "https://assets.klikindomaret.com/promos/20230220_17_00_20230228_23_00/20037222/20037222_1.jpg"
 ]
 
 export default function ProductsCreatePage() {
@@ -50,15 +57,15 @@ export default function ProductsCreatePage() {
       links: [
           {
               "name": "Instagram",
-              "text": `http://localhost:3000/products/catalogue/:productID/view?channel=instagram`,
+              "text": `${process.env.REACT_APP_FRONTEND_HOST}/products/catalogue/:productID/view?channel=instagram`,
           },
           {
               "name": "Tiktok",
-              "text": `http://localhost:3000/products/catalogue/:productID/view?channel=tiktok`
+              "text": `${process.env.REACT_APP_FRONTEND_HOST}/products/catalogue/:productID/view?channel=tiktok`
           },
           {
               "name": "Whatsapp",
-              "text": `http://localhost:3000/products/catalogue/:productID/view?channel=whatsapp`
+              "text": `${process.env.REACT_APP_FRONTEND_HOST}/catalogue/:productID/view?channel=whatsapp`
           }
       ]
     }
