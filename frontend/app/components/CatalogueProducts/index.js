@@ -1,13 +1,8 @@
-import { Add } from '@mui/icons-material';
 import { Grid, Stack } from '@mui/material';
-import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { CatalogueContext } from '../../containers/ProductsPage';
 import { getProducts } from '../../services/api';
 import { CatalogueProductCard } from '../CatalogueProduct/CatalogueProductCard';
-import { ProductButton } from '../Product/ProductButton';
-import { ProductCard } from '../Product/ProductCard';
 
 export function CatalogueProducts() {
   const [productDatas, setProductDatas] = useState([])
@@ -21,26 +16,36 @@ export function CatalogueProducts() {
   }, []);
 
   return (
-      <Stack direction="row" justifyContent="end">
-        <Grid container spacing={4}>
-          {
-            productDatas.map((prod) => {
-              return (
-                <Grid item>
-                  <CatalogueContext.Consumer>
-                    {
-                      ({ orders, setOrders }) => (
-                        <CatalogueProductCard product={prod} orders={orders} setOrders={setOrders}/>
-                      )
-                    }
+      <>
+        <Stack
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ backgroundColor: '#C10230', color: 'white', height: '50px' }}
+        >
+          Welcome to Catalogue
+        </Stack>
+        <Stack direction="row" sx={{ marginTop: '30px' }}>
+          <Grid container spacing={4}>
+            {
+              productDatas.map((prod) => {
+                return (
+                  <Grid item>
+                    <CatalogueContext.Consumer>
+                      {
+                        ({ orders, setOrders }) => (
+                          <CatalogueProductCard product={prod} orders={orders} setOrders={setOrders}/>
+                        )
+                      }
 
-                  </CatalogueContext.Consumer>
-                </Grid>
-              )
-            })
-          }
-        </Grid>
-      </Stack>
+                    </CatalogueContext.Consumer>
+                  </Grid>
+                )
+              })
+            }
+          </Grid>
+        </Stack>
+      </>
     )
 }
 

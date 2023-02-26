@@ -12,7 +12,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ProductsPage from '../ProductsPage';
-import CataloguePage from '../CataloguePage';
+import OrdersPage from 'containers/OrdersPage';
+import NinjaBizPage from '../NinjaBizPage';
 
 const AppWrapper = styled.div`
   max-width: calc(500px);
@@ -28,9 +29,26 @@ export default function App() {
     <AppWrapper>
       <Switch>
         <Route path="/products" component={ProductsPage} />
-        <Route path="/catalogue" component={CataloguePage} />
+        <Route path="/orders" component={OrdersPage} />
+        <Route path="/biz" component={NinjaBizPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
     </AppWrapper>
   );
 }
+
+
+// <ThemeProvider theme={themeRed}>
+{/* <AppWrapper>
+<GlobalStyles
+styles={{
+  body: { backgroundColor: "lightyellow" }
+}}
+/>
+<React.Fragment>
+  <GlobalStyles styles={{ html: {backgroundColor: "red" }, body: { backgroundColor: "lightyellow" } }} />
+</React.Fragment>
+<Footer />
+<GlobalStyle />
+</AppWrapper>
+// </ThemeProvider> */}

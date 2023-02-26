@@ -13,7 +13,7 @@ export function CatalogueProductCard({ product, orders, setOrders }) {
   }, [quantity])
 
   return (
-    <Card sx={{ width: 150, height: 265 }}>
+    <Card sx={{ width: 150, height: 250 }}>
       {/* <Link to={`/catalgoue/products/${product.id}`} style={{ textDecoration: 'none', color: 'black' }}> */}
         <CardMedia
           sx={{ height: 119 }}

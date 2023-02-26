@@ -19,3 +19,13 @@ export async function createOrder(postBody) {
   const response = await customAxios.post('/order/create', postBody);
   return response;
 }
+
+export async function getOrders() {
+  const response = await customAxios.get('/orders/get');
+  return response;
+}
+
+export async function cancelOrder(postBody) {
+  const response = await customAxios.post('/order/cancel', postBody);
+  return response;
+}
